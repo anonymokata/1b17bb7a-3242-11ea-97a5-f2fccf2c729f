@@ -22,10 +22,10 @@ public class WriteTest {
 		pencil.writeOnPaper(message);
 		
 		// Return current paper pencil is writing on
-		Paper paper = pencil.getPaper();
+		String paperText = pencil.getPaper();
 		
-		// 
-		assertEquals
+		// Get paper contents
+		assertEquals(message,paperText);
 	}
 
 }
