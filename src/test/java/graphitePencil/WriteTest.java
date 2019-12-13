@@ -27,5 +27,23 @@ public class WriteTest {
 		// Get paper contents
 		assertEquals(message,paperText);
 	}
-
+	
+	@Test
+	public void pencilShouldWriteOnExistingPaper() {
+		// Create a pencil object
+		String originalPaper = "Pre-existing words on paper.";
+		Pencil pencil = new Pencil(originalPaper);
+		
+		// Define what should be written
+		String message = " I can write more stuff on paper";
+		
+		// Make pencil write on paper (stored internally)
+		pencil.writeOnPaper(message);
+		
+		// Return current paper pencil is writing on
+		String paperText = pencil.getPaper();
+		
+		// Get paper contents
+		assertEquals(message,paperText);
+	}
 }
