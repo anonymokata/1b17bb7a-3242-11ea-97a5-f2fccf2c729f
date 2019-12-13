@@ -24,7 +24,7 @@ public class WriteTest {
 		// Return current paper pencil is writing on
 		String paperText = pencil.getPaper();
 		
-		// Get paper contents
+		// Compare message to paper
 		assertEquals(message,paperText);
 	}
 	
@@ -43,7 +43,10 @@ public class WriteTest {
 		// Return current paper pencil is writing on
 		String paperText = pencil.getPaper();
 		
-		// Get paper contents
-		assertEquals(message,paperText);
+		// Compare expected message to paper
+		String expectedText = originalPaper + message;
+		assertEquals(expectedText,paperText);
 	}
+	
+	
 }
