@@ -59,14 +59,14 @@ public class EraseTest {
 		String text1 = "She told me that she loved me!! :) I said I alway$ loved her! #myfirst";
 		Paper story = new Paper(text1);
 		
-		// Removing a string containing white space and # literal
+		// Erasing with a string containing white space and # literal
 		Eraser.eraseFromPaper(story, " #myfirst");
 		String expected = "She told me that she loved me!! :) I said I alway$ loved her!         ";
 		String paperText = story.getText();
 		assertEquals("Failed to remove string with white space and '#'",
 				expected,paperText);
 		
-		// Removing a string with no alphanumeric characters
+		// Erasing with a string with no alphanumeric characters
 		Eraser.eraseFromPaper(story, "! :)");
 		expected = "She told me that she loved me!     I said I alway$ loved her!         ";
 		paperText = story.getText();
@@ -74,5 +74,23 @@ public class EraseTest {
 				expected,paperText);
 	}
 	
-
+	@Test
+	public void eraserShouldNotEraseSpecialCharactersEvenWhenIncluded() {
+		String text1 = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
+		Paper story = new Paper(text1);
+		
+		// Removing with a string containing a new line
+		Eraser.eraseFromPaper(story, "\n#myfirst");
+		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n         ";
+		String paperText = story.getText();
+		assertEquals("Failed for removing new line",
+				expected,paperText);
+		
+		// Removing with a string containing a tab
+		Eraser.eraseFromPaper(story, "\tI");
+		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n         ";
+		paperText = story.getText();
+		assertEquals("Failed for removing tab",
+				expected,paperText);
+	}
 }
