@@ -15,7 +15,10 @@ public class Eraser {
 		
 		// Erase by replacing with spaces
 		for(int i = 0; i < erasureLength; i++) {
-			paperText.setCharAt(erasureIndex + i, ' ');
+			char currentChar = paperText.charAt(erasureIndex + i);
+			if(!Character.isWhitespace(currentChar)) {
+				paperText.setCharAt(erasureIndex + i, ' ');
+			}
 		}
 		
 		String erasedPaper = paperText.toString();

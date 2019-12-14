@@ -75,20 +75,22 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldNotEraseSpecialCharactersEvenWhenIncluded() {
+	public void eraserShouldNotEraseSpecialCharactersFromPaperWhenIncludedInString() {
 		String text1 = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
 		Paper story = new Paper(text1);
 		
 		// Removing with a string containing a new line
 		Eraser.eraseFromPaper(story, "\n#myfirst");
-		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n         ";
+		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n        ";
 		String paperText = story.getText();
+		System.out.println(expected);
+		System.out.println(paperText);
 		assertEquals("Failed for removing new line",
 				expected,paperText);
 		
 		// Removing with a string containing a tab
 		Eraser.eraseFromPaper(story, "\tI");
-		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n         ";
+		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n        ";
 		paperText = story.getText();
 		assertEquals("Failed for removing tab",
 				expected,paperText);
