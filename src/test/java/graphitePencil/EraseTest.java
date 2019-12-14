@@ -23,7 +23,7 @@ public class EraseTest {
 
 	@Test
 	public void eraseShouldEraseLastOccurenceOfTestFromPaper() {
-		String text1 = "She told me that she loved me. I said I loved her back";
+		String text1 = "She told me that she loved me. I said I loved her back.";
 		Paper story = new Paper(text1);
 		
 		Eraser.eraseFromPaper(story, "loved");
