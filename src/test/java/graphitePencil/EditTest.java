@@ -12,8 +12,8 @@ public class EditTest {
 		Paper story = new Paper(text1);
 		
 		int startIndex = 4;
-		String newWords = "loves";
-		Editor.editOnPaper(story,"loves",4);
+		String replacement = "loves";
+		Editor.editOnPaper(story,replacement,startIndex);
 		
 		String expected = "She loves me. She loves me not.";
 		String paperText = story.getText();
