@@ -19,7 +19,7 @@ public class EraseTest {
 	}
 
 	@Test
-	public void eraseShouldEraseLastOccurenceOfTestFromPaper() {
+	public void eraserShouldEraseLastOccurenceOfTextFromPaper() {
 		String text1 = "She told me that she loved me. I said I loved her back.";
 		Paper story = new Paper(text1);
 		
@@ -29,4 +29,29 @@ public class EraseTest {
 		String paperText = story.getText();
 		assertEquals(expected,paperText);		
 	}
+	
+	@Test
+	public void eraserShouldContinuetoEraseLastOccurenceofTextFromPaper() {
+		String text1 = "She told me that she loved me. I said I loved her back and my love would never stop.";
+		Paper story = new Paper(text1);
+		
+		// Test first rightmost removal
+		Eraser.eraseFromPaper(story, "love");
+		String expected = "She told me that she loved me. I said I loved her back and my      would never stop.";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+		
+		// Test second rightmost removal
+		Eraser.eraseFromPaper(story, "love");
+		expected = "She told me that she loved me. I said I     d her back and my      would never stop.";
+		paperText = story.getText();
+		assertEquals(expected,paperText);
+
+		// Test second rightmost removal
+		Eraser.eraseFromPaper(story, "love");
+		expected = "She told me that she     d me. I said I     d her back and my      would never stop.";
+		paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
+	
 }
