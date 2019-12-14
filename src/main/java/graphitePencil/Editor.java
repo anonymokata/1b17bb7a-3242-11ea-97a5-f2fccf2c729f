@@ -9,12 +9,14 @@ public class Editor {
 		int replacementLength = replacementText.length();
 		for(int i = 0; i < replacementLength; i++) {
 			char currentChar = paperText.charAt(startIndex + i);
-			char replaceChar = replacementText.charAt(startIndex + i);
+			char replaceChar = replacementText.charAt(i);
 			if(currentChar == ' ') {
 				paperText.setCharAt(startIndex + i, replaceChar);
 			}
 		}
 		
+		String editedPaper = paperText.toString();
+		paper.setText(editedPaper);
 	}
 	
 }
