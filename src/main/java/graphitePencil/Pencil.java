@@ -6,11 +6,6 @@ package graphitePencil;
 public class Pencil {
 	private String paper;
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("I'm alive.");
-	}
-	
 	// Initialize blank paper if no string given
 	Pencil(){
 		this.setPaper("");
@@ -33,7 +28,7 @@ public class Pencil {
 	}
 
 	/**
-	 * @param paper the paper to set
+	 * @param paper the paper to use
 	 */
 	public void setPaper(String paper) {
 		this.paper = paper;

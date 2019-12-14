@@ -47,6 +47,4 @@ public class WriteTest {
 		String expectedText = originalPaper + message;
 		assertEquals(expectedText,paperText);
 	}
-	
-	
 }
