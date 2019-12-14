@@ -16,6 +16,8 @@ public class EraseTest {
 		String expected = "She told me that she loved me. I said I did    love her back.";
 		String paperText = story.getText();
 		
+		System.out.println(expected);
+		System.out.println(paperText);
 		assertEquals(expected,paperText);
 	}
 
