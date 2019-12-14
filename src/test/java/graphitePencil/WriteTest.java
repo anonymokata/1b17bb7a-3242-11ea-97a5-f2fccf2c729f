@@ -13,16 +13,17 @@ public class WriteTest {
 	@Test
 	public void pencilShouldWriteOnBlankPaper() {
 		// Create a pencil object
-		Pencil pencil = new Pencil();
+		Paper blankPaper = new Paper();
+		Pencil pencil = new Pencil(blankPaper);
 		
 		// Define what should be written
 		String message = "I can write on paper";
 		
 		// Make pencil write on paper (stored internally)
-		pencil.writeOnPaper(message);
+		pencil.writeToPaper(message);
 		
 		// Return current paper pencil is writing on
-		String paperText = pencil.getPaper();
+		String paperText = blankPaper.getText();
 		
 		// Compare message to paper
 		assertEquals(message,paperText);
@@ -31,20 +32,21 @@ public class WriteTest {
 	@Test
 	public void pencilShouldWriteOnExistingPaper() {
 		// Create a pencil object
-		String originalPaper = "Pre-existing words on paper.";
+		String originalText = "Pre-existing words on paper.";
+		Paper originalPaper = new Paper(originalText);
 		Pencil pencil = new Pencil(originalPaper);
 		
 		// Define what should be written
 		String message = " I can write more stuff on paper";
 		
 		// Make pencil write on paper (stored internally)
-		pencil.writeOnPaper(message);
+		pencil.writeToPaper(message);
 		
 		// Return current paper pencil is writing on
-		String paperText = pencil.getPaper();
+		String paperText = originalPaper.getText();
 		
 		// Compare expected message to paper
-		String expectedText = originalPaper + message;
+		String expectedText = originalText + message;
 		assertEquals(expectedText,paperText);
 	}
 }
