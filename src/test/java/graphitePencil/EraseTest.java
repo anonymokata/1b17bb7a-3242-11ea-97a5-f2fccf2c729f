@@ -54,4 +54,25 @@ public class EraseTest {
 		assertEquals(expected,paperText);
 	}
 	
+	@Test
+	public void eraserShouldEraseNonAlphanumbericalCharactersFromPaper() {
+		String text1 = "She told me that she loved me!! :) I said I alway$ loved her! #myfirst";
+		Paper story = new Paper(text1);
+		
+		// Removing a string containing white space and # literal
+		Eraser.eraseFromPaper(story, " #myfirst");
+		String expected = "She told me that she loved me!! :) I said I alway$ loved her!         ";
+		String paperText = story.getText();
+		assertEquals("Failed to remove string with white space and '#'",
+				expected,paperText);
+		
+		// Removing a string with no alphanumeric characters
+		Eraser.eraseFromPaper(story, "! :)");
+		expected = "She told me that she loved me!     I said I alway$ loved her!         ";
+		paperText = story.getText();
+		assertEquals("Failed to remove string with no alphanumeric charactes",
+				expected,paperText);
+	}
+	
+
 }
