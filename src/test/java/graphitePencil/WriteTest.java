@@ -11,7 +11,7 @@ import org.junit.Test;
 public class WriteTest {
 
 	@Test
-	public void writerShouldWriteOnBlankPaper() {
+	public void writerShouldWriteToBlankPaper() {
 		// Create a pencil object
 		Paper blankPaper = new Paper();
 		Pencil pencil = new Pencil(blankPaper);
@@ -30,7 +30,7 @@ public class WriteTest {
 	}
 	
 	@Test
-	public void writerShouldWriteOnExistingPaper() {
+	public void writerShouldWriteToExistingPaper() {
 		// Create a pencil object
 		String originalText = "Pre-existing words on paper.";
 		Paper originalPaper = new Paper(originalText);
@@ -51,7 +51,7 @@ public class WriteTest {
 	}
 	
 	@Test
-	public void writerShouldWriteOnMultiplePapers() {
+	public void writerShouldWriteToMultiplePapers() {
 		// Setup papers
 		String text1 = "I am a biography. ";
 		String text2 = "I am a story. ";
@@ -81,6 +81,24 @@ public class WriteTest {
 		
 		expected = text3 + writeText;
 		paperText = paper3.getText();
+		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void writerShouldWriteToPaperMultipleTimes() {
+		String text1 = "I went to the store.";
+		String text2 = " I found the milk I was look for.";
+		String text3 = " I paid the cashier and left the store";
+		
+		Paper story = new Paper();
+		
+		Writer.writeToPaper(story, text1);
+		Writer.writeToPaper(story, text2);
+		Writer.writeToPaper(story, text3);
+		
+		String expected = text1 + text2 + text3;
+		String paperText = story.getText();
+		
 		assertEquals(expected,paperText);
 	}
 }
