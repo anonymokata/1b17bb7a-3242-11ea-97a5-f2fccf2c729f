@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class EraseText {
+public class EraseTest {
 
 	@Test
 	public void eraserShouldEraseTextFromPaper() {
