@@ -43,7 +43,7 @@ public class EditTest {
 		String replacement = "oiink";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow jumped over the moon.\n@@@@oo";
+		String expected = "The cow jumped over the moon.\n@@@@oo!";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
