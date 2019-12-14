@@ -21,4 +21,18 @@ public class EraseTest {
 		assertEquals(expected,paperText);
 	}
 
+	@Test
+	public void eraseShouldEraseLastOccurenceOfTestFromPaper() {
+		String text1 = "She told me that she loved me. I said I loved her back";
+		Paper story = new Paper(text1);
+		
+		Eraser.eraseFromPaper(story, "loved");
+		
+		String expected = "She told me that she loved me. I said I       her back.";
+		String paperText = story.getText();
+		
+		System.out.println(expected);
+		System.out.println(paperText);
+		assertEquals(expected,paperText);		
+	}
 }
