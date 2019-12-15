@@ -75,7 +75,7 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldNotEraseSpecialCharactersFromPaperWhenIncludedInString() {
+	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaperWhenIncludedInString() {
 		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
 		Paper story = new Paper(text);
 		
@@ -90,6 +90,37 @@ public class EraseTest {
 		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n        ";
 		paperText = story.getText();
 		assertEquals("Failed for removing tab",expected,paperText);
+	}
+	
+	@Test
+	public void eraserShouldEraseFromMultiplePapers() {
+		// Setup papers
+		String text1 = "I am a biography.";
+		String text2 = "I am a story.";
+		String text3 = "I am a poem.";
+		String eraseText = "I";
+		
+		Paper paper1 = new Paper(text1);
+		Paper paper2 = new Paper(text2);
+		Paper paper3 = new Paper(text3);
+		
+		// Pencil 1 write and test
+		Eraser.eraseFromPaper(paper1,eraseText);
+		String expected = "  am a biography.";
+		String paperText = paper1.getText();
+		assertEquals(expected,paperText);
+		
+		// Pencil 2 write and test
+		Eraser.eraseFromPaper(paper2,eraseText);
+		expected = "  am a story.";
+		paperText = paper2.getText();
+		assertEquals(expected,paperText);
+		
+		// Pencil 3 write and test
+		Eraser.eraseFromPaper(paper3,eraseText);
+		expected = "  am a poem.";
+		paperText = paper3.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	@Test
