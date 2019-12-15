@@ -8,8 +8,8 @@ public class EraseTest {
 
 	@Test
 	public void eraserShouldEraseTextFromPaper() {
-		String text1 = "She told me that she loved me. I said I didn't love her back.";
-		Paper story = new Paper(text1);
+		String text = "She told me that she loved me. I said I didn't love her back.";
+		Paper story = new Paper(text);
 		
 		Eraser.eraseFromPaper(story, "n't");
 		
@@ -20,8 +20,8 @@ public class EraseTest {
 
 	@Test
 	public void eraserShouldEraseLastOccurenceOfTextFromPaper() {
-		String text1 = "She told me that she loved me. I said I loved her back.";
-		Paper story = new Paper(text1);
+		String text = "She told me that she loved me. I said I loved her back.";
+		Paper story = new Paper(text);
 		
 		Eraser.eraseFromPaper(story, "loved");
 		
@@ -32,8 +32,8 @@ public class EraseTest {
 	
 	@Test
 	public void eraserShouldContinuetoEraseLastOccurenceofTextFromPaper() {
-		String text1 = "She told me that she loved me. I said I loved her back and my love would never stop.";
-		Paper story = new Paper(text1);
+		String text = "She told me that she loved me. I said I loved her back and my love would never stop.";
+		Paper story = new Paper(text);
 		
 		// Test first rightmost removal
 		Eraser.eraseFromPaper(story, "love");
@@ -56,8 +56,8 @@ public class EraseTest {
 	
 	@Test
 	public void eraserShouldEraseNonAlphanumbericalCharactersFromPaper() {
-		String text1 = "She told me that she loved me!! :) I said I alway$ loved her! #myfirst";
-		Paper story = new Paper(text1);
+		String text = "She told me that she loved me!! :) I said I alway$ loved her! #myfirst";
+		Paper story = new Paper(text);
 		
 		// Erasing with a string containing white space and # literal
 		Eraser.eraseFromPaper(story, " #myfirst");
@@ -76,8 +76,8 @@ public class EraseTest {
 	
 	@Test
 	public void eraserShouldNotEraseSpecialCharactersFromPaperWhenIncludedInString() {
-		String text1 = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
-		Paper story = new Paper(text1);
+		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
+		Paper story = new Paper(text);
 		
 		// Removing with a string containing a new line
 		Eraser.eraseFromPaper(story, "\n#myfirst");
@@ -93,9 +93,9 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldReturnFalseIfNoCharactersWereReplaced() {
-		String text1 = "She told me that she loved me.\nI said I didn't love her back.";
-		Paper story = new Paper(text1);
+	public void eraserShouldReturnFalseIfNoCharactersWereErased() {
+		String text = "She told me that she loved me.\nI said I didn't love her back. ###";
+		Paper story = new Paper(text);
 		
 		boolean erasedNewLine = Eraser.eraseFromPaper(story, "\n");
 		boolean erasedPhrase = Eraser.eraseFromPaper(story, "boogah");
@@ -104,5 +104,19 @@ public class EraseTest {
 		assertFalse(erasedNewLine);
 		assertFalse(erasedPhrase);
 		assertFalse(erasedWhite);
+	}
+	
+	@Test
+	public void eraserShouldReturnTrueIfCharactersWereErased() {
+		String text = "She told me that she loved me.\nI said I didn't love her back. ###";
+		Paper story = new Paper(text);
+		
+		boolean erasedLowerCaseShe = Eraser.eraseFromPaper(story, "she");
+		boolean erasedNewLineI = Eraser.eraseFromPaper(story, "\nI");
+		boolean erasedHashTags = Eraser.eraseFromPaper(story, "###");
+		
+		assertTrue(erasedLowerCaseShe);
+		assertTrue(erasedNewLineI);
+		assertTrue(erasedHashTags);
 	}
 }
