@@ -48,8 +48,9 @@ public class PencilTest {
 		availablePoints = pencil.getWritePoints();
 		assertEquals(10,availablePoints);
 	}
+	
 	@Test
-	public void pencilShoulWriteBlankSpacesWhenOutOfWritePoints() {
+	public void pencilShouldWriteBlankSpacesWhenOutOfWritePoints() {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();
 		
