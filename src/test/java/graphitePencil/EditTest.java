@@ -61,9 +61,9 @@ public class EditTest {
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
-	
+
 	@Test
-	public void editorShouldThrowErrorIfStartIndexIsGreaterThanLengthOfPaper() {
+	public void editorShouldNotEditPaperIfStartIndexGreaterThanPaperLength() {
 		
 	}
 }
