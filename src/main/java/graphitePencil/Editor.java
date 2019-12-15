@@ -2,7 +2,6 @@ package graphitePencil;
 
 public class Editor {
 	public static boolean editOnPaper(Paper paper, String replacementText, int startIndex) {
-		// TODO must check that startIndex is <= paper.length or throw error
 		StringBuilder paperText = new StringBuilder(paper.getText());
 		int replacementLength = replacementText.length();
 		
