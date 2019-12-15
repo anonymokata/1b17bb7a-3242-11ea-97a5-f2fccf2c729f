@@ -48,4 +48,17 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 	
+	@Test
+	public void editorShouldWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
+		String text1 = "The cow jumped over the moon. ";
+		Paper story = new Paper(text1);
+		
+		int startIndex = 29;
+		String replacement = " Moo!";
+		Editor.editOnPaper(story,replacement,startIndex);
+		
+		String expected = "The cow jumped over the moon. Moo!";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
 }
