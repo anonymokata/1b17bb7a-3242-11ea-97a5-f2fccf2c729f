@@ -2,6 +2,8 @@ package graphitePencil;
 
 import static org.junit.Assert.*;
 
+import javax.swing.tree.DefaultTreeCellEditor.EditorContainer;
+
 import org.junit.Test;
 
 public class EditTest {
@@ -64,6 +66,19 @@ public class EditTest {
 
 	@Test
 	public void editorShouldNotEditPaperIfStartIndexGreaterThanPaperLength() {
+		Paper story = new Paper();
+		
+		int startIndex = 1;
+		String replacement = "Hello World!";
+		Editor.editOnPaper(story, replacement, startIndex);
+		
+		String expected = "";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void editorShouldReturnFalseIfStartIndexGreaterThanPaperLength() {
 		
 	}
 }
