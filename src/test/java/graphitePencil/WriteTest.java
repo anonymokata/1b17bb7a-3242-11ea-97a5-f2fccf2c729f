@@ -64,21 +64,18 @@ public class WriteTest {
 		
 		// Pencil 1 write and test
 		Writer.writeToPaper(paper1,writeText);
-
 		String expected = text1 + writeText;
 		String paperText = paper1.getText();
 		assertEquals(expected,paperText);
 		
 		// Pencil 2 write and test
 		Writer.writeToPaper(paper2,writeText);
-		
 		expected = text2 + writeText;
 		paperText = paper2.getText();
 		assertEquals(expected,paperText);
 		
 		// Pencil 3 write and test
 		Writer.writeToPaper(paper3,writeText);
-		
 		expected = text3 + writeText;
 		paperText = paper3.getText();
 		assertEquals(expected,paperText);
