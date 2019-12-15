@@ -15,10 +15,12 @@ public class Pencil {
 		this.graphitePoints = graphitePoints;
 	}
 
-	public void writeToPaper(String newText) {
-		
+	public void writeToPaper(Paper paper, String newText) {
+		int lowerCount = 0;
 	}
 
-
+	public int getWritePoints() {
+		return this.writePoints;
+	}
 
 }
