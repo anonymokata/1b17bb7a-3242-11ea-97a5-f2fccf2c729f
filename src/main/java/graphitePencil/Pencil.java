@@ -16,7 +16,7 @@ public class Pencil {
 	}
 
 	public void writeToPaper(Paper paper, String writeText) {
-		StringBuilder degradation = new StringBuilder(writeText);
+		StringBuilder degradation = new StringBuilder();
 		
 		for(int i = 0; i < writeText.length(); i++) {
 			char writeChar = writeText.charAt(i);
@@ -30,6 +30,7 @@ public class Pencil {
 		}
 		
 		String degraded = degradation.toString();
+		System.out.println(degraded);
 		Writer.writeToPaper(paper, degraded);
 	}
 

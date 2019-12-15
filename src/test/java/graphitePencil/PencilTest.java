@@ -7,6 +7,18 @@ import org.junit.Test;
 public class PencilTest {
 	
 	@Test
+	public void pencilShouldWriteOnPaper() {
+		Pencil pencil = new Pencil(10,10,100);
+		Paper paper = new Paper();
+		
+		// Simple write to paper using pencil
+		pencil.writeToPaper(paper, "a");
+		String expected = "a";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);		
+	}
+	
+	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();

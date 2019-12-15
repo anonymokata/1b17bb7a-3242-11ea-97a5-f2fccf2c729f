@@ -39,6 +39,11 @@ dependencies {
 * 7. Select File System Directory 
 * 8. Browse for the folder with all the source files
 * 9. Save all changes
+* 10. Set breakpoints
+* 11. Run gradle build or gradle test to initiate tests
+* 12. Gradle will pause til a connection is recieved
+* 13. Run your Remote Java Application
+* 14. Enjoy Debugging!
 *//*
 test {
 	debug true
