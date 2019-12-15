@@ -3,6 +3,7 @@ package graphitePencil;
 public class Eraser {
 	static public boolean eraseFromPaper(Paper paper, String desiredText) {
 		StringBuilder paperText = new StringBuilder(paper.getText());
+		boolean erased = false;
 		
 		// Find last index and number of spaces to be used
 		int erasureLength = desiredText.length();
@@ -18,6 +19,7 @@ public class Eraser {
 			char currentChar = paperText.charAt(erasureIndex + i);
 			if(!Character.isWhitespace(currentChar)) {
 				paperText.setCharAt(erasureIndex + i, ' ');
+				erased = true;
 			}
 		}
 		

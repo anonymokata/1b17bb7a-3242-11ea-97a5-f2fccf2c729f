@@ -83,16 +83,26 @@ public class EraseTest {
 		Eraser.eraseFromPaper(story, "\n#myfirst");
 		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n        ";
 		String paperText = story.getText();
-		System.out.println(expected);
-		System.out.println(paperText);
-		assertEquals("Failed for removing new line",
-				expected,paperText);
+		assertEquals("Failed for removing new line",expected,paperText);
 		
 		// Removing with a string containing a tab
 		Eraser.eraseFromPaper(story, "\tI");
 		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n        ";
 		paperText = story.getText();
-		assertEquals("Failed for removing tab",
-				expected,paperText);
+		assertEquals("Failed for removing tab",expected,paperText);
+	}
+	
+	@Test
+	public void eraserShouldReturnFalseIfNoCharactersWereReplaced() {
+		String text1 = "She told me that she loved me.\nI said I didn't love her back.";
+		Paper story = new Paper(text1);
+		
+		boolean erasedNewLine = Eraser.eraseFromPaper(story, "\n");
+		boolean erasedPhrase = Eraser.eraseFromPaper(story, "boogah");
+		boolean erasedWhite = Eraser.eraseFromPaper(story, " ");
+
+		assertFalse(erasedNewLine);
+		assertFalse(erasedPhrase);
+		assertFalse(erasedWhite);
 	}
 }
