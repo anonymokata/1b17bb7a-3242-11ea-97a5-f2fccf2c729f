@@ -25,6 +25,6 @@ public class Eraser {
 		
 		String erasedPaper = paperText.toString();
 		paper.setText(erasedPaper);
-		return true;
+		return erased;
 	}
 }
