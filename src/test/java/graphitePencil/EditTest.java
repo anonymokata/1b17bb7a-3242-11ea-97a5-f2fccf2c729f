@@ -50,15 +50,20 @@ public class EditTest {
 	
 	@Test
 	public void editorShouldWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
-		String text1 = "The cow jumped over the moon. ";
+		String text1 = "The cow goes ";
 		Paper story = new Paper(text1);
 		
-		int startIndex = 29;
-		String replacement = " Moo!";
+		int startIndex = 12;
+		String replacement = "moo!";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow jumped over the moon. Moo!";
+		String expected = "The cow goes moo!";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void editorShouldThrowErrorIfStartIndexIsGreaterThanLengthOfPaper() {
+		
 	}
 }
