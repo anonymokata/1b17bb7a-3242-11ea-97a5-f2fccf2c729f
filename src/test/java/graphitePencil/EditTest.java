@@ -8,8 +8,8 @@ public class EditTest {
 
 	@Test
 	public void editorShouldEditWhiteSpaceOnPaperWithReplacementString() {
-		String text1 = "She       me. She loves me not.";
-		Paper story = new Paper(text1);
+		String text = "She       me. She loves me not.";
+		Paper story = new Paper(text);
 		
 		int startIndex = 4;
 		String replacement = "loves";
@@ -22,8 +22,8 @@ public class EditTest {
 
 	@Test
 	public void editorShouldCollideWithAllNonWhiteSpaceCharactersWhenEditing() {
-		String text1 = "The     jumped over the moon.";
-		Paper story = new Paper(text1);
+		String text = "The     jumped over the moon.";
+		Paper story = new Paper(text);
 		
 		int startIndex = 4;
 		String replacement = "whale";
@@ -36,8 +36,8 @@ public class EditTest {
 	
 	@Test
 	public void editorShouldNotCollideWithSpecialWhiteSpaceCharacters() {
-		String text1 = "The cow jumped over the moon.\nmooooo!";
-		Paper story = new Paper(text1);
+		String text = "The cow jumped over the moon.\nmooooo!";
+		Paper story = new Paper(text);
 		
 		int startIndex = 29;
 		String replacement = "oiink";
@@ -50,8 +50,8 @@ public class EditTest {
 	
 	@Test
 	public void editorShouldWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
-		String text1 = "The cow goes ";
-		Paper story = new Paper(text1);
+		String text = "The cow goes ";
+		Paper story = new Paper(text);
 		
 		int startIndex = 12;
 		String replacement = " moo!";
@@ -88,8 +88,8 @@ public class EditTest {
 	
 	@Test
 	public void editorShouldReturnTrueIfStartIndexLessThanOrEqualToPaperLength() {
-		String text1 = "She       me. She loves me not.";
-		Paper story = new Paper(text1);
+		String text = "She       me. She loves me not.";
+		Paper story = new Paper(text);
 		
 		int startIndex = 4;
 		String replacement = "loves";

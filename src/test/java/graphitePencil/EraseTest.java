@@ -8,11 +8,11 @@ public class EraseTest {
 
 	@Test
 	public void eraserShouldEraseTextFromPaper() {
+		// Create paper with text
 		String text = "She told me that she loved me. I said I didn't love her back.";
 		Paper story = new Paper(text);
 		
 		Eraser.eraseFromPaper(story, "n't");
-		
 		String expected = "She told me that she loved me. I said I did    love her back.";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
@@ -24,7 +24,6 @@ public class EraseTest {
 		Paper story = new Paper(text);
 		
 		Eraser.eraseFromPaper(story, "loved");
-		
 		String expected = "She told me that she loved me. I said I       her back.";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);		
