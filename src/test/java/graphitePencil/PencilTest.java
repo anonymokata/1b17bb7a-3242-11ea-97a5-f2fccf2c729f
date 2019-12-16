@@ -34,6 +34,23 @@ public class PencilTest {
 		assertEquals(6,availablePoints);		
 	}
 	
+	@Test
+	public void whenWritingPencilShouldLoseTwoWritePointPerUpperCaseLetter() {
+		Pencil pencil = new Pencil(10,10,100);
+		Paper paper = new Paper();
+		
+		// Test with 1 character
+		pencil.writeToPaper(paper, "a");
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(8,availablePoints);
+		
+		// Test with 3 characters
+		pencil.writeToPaper(paper, "aaa");
+		availablePoints = pencil.getWritePoints();
+		assertEquals(2,availablePoints);		
+	}
+	
+	
 	public void whenWritingPencilShouldNotLosePointsForAnyWhiteSpace() {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();
