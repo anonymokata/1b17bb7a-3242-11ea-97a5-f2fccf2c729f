@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class EditTest {
 
+	/*********************** Edit Testing ***********************/
 	@Test
 	public void editorShouldEditBlankSpaceOnPaperWithReplacementString() {
 		String text = "She       me. She loves me not.";
@@ -37,6 +38,7 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 	
+	/*********************** Collision Testing ***********************/
 	@Test
 	public void editorShouldNotCollideWithSpecialWhiteSpaceCharacters() {
 		// WSEditor can write over special whitespace characters
@@ -58,7 +60,7 @@ public class EditTest {
 		String text = "The cow jumped over the moon.\nmooooo!";
 		Paper story = new Paper(text);
 		
-		//Starting at new line
+		// Starting at new line
 		int startIndex = 29;
 		String replacement = "oiink";
 		Editor.editOnPaper(story,replacement,startIndex);
@@ -67,7 +69,38 @@ public class EditTest {
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
-
+	
+	@Test
+	public void editorShouldNotCollideBlankSpacesFromReplacementText() {
+		String text = "The     jumped over the moon.";
+		Paper story = new Paper(text);
+		
+		// Starting at new line
+		int startIndex = 29;
+		String replacement = "cow ran over";
+		Editor.editOnPaper(story,replacement,startIndex);
+		
+		String expected = "The cow @@@p@@e@ver the moon.\n@@@@oo!";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void editorShouldNotCollideSpecialWhiteSpaceFromReplacementText() {
+		String text = "The     jumped over the moon.";
+		Paper story = new Paper(text);
+		
+		// Starting at new line
+		int startIndex = 29;
+		String replacement = "cow\nran\nover";
+		Editor.editOnPaper(story,replacement,startIndex);
+		
+		String expected = "The cow @@@p@@e@ver the moon.\n@@@@oo!";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
+	
+	/*********************** Overflow Testing ***********************/
 	@Test
 	public void editorShouldWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
 		String text = "The cow goes ";
@@ -83,6 +116,7 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 
+	/*********************** Start Index Testing ***********************/
 	@Test
 	public void editorShouldNotEditPaperIfStartIndexGreaterThanPaperLength() {
 		Paper story = new Paper();
@@ -94,16 +128,6 @@ public class EditTest {
 		String expected = "";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
-	}
-	
-	@Test
-	public void editorShouldNotCollideBlankSpacesFromReplacementText() {
-		
-	}
-	
-	@Test
-	public void editorShouldNotCollideSpecialWhiteSpaceFromReplacementText() {
-		
 	}
 	
 	@Test
