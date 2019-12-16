@@ -60,6 +60,7 @@ public class Pencil {
 	public boolean sharpen() {
 		if(this.pencilLength > 0) {
 			this.writePoints = this.defaultWritePoints;
+			this.pencilLength--;
 			return true;			
 		} else {
 			return false;
@@ -79,7 +80,7 @@ public class Pencil {
 	}
 	
 	public int getDefaultWritePoints() {
-		return this.getDefaultWritePoints();
+		return this.defaultWritePoints;
 	}
 
 }
