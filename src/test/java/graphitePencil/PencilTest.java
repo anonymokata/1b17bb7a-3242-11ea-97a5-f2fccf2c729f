@@ -6,6 +6,9 @@ import org.junit.Test;
 
 public class PencilTest {
 
+	/****************************
+	 * WRITE UNIT TESTS : START *
+	 ****************************/
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,10);
@@ -72,6 +75,49 @@ public class PencilTest {
 	}
 	
 	@Test
+	public void pencilShouldWriteOnPaper() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper();
+		
+		// Simple write to paper using pencil
+		pencil.writeToPaper(paper, "a");
+		String expected = "a";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);		
+	}
+	
+	@Test
+	public void pencilShouldWriteBlankSpacesForNonWhiteSpaceCharactersWhenOutOfWritePoints() {
+		Pencil pencil = new Pencil(10,10,10);
+		String text = "I am more than 10";
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, text);
+		String expected = "I am more th     ";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void pencilShouldAlwaysPreserveWhiteSpaceCharactersEvenWhenOutOfPoints() {
+		Pencil pencil = new Pencil(4,10,10);
+		String text = "I am newline \n";
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, text);
+		String expected = "I am         \n";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
+	}
+	/**************************
+	 * WRITE UNIT TESTS : END *
+	 **************************/
+	
+	
+	/******************************
+	 * SHARPEN UNIT TESTS : START *
+	 ******************************/
+	@Test
 	public void AfterSharpeningPencilWritingPointsShouldGoBackToDefault() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
@@ -125,28 +171,5 @@ public class PencilTest {
 		assertTrue(sharpened);
 	}
 	
-	@Test
-	public void pencilShouldWriteOnPaper() {
-		Pencil pencil = new Pencil(10,10,100);
-		Paper paper = new Paper();
-		
-		// Simple write to paper using pencil
-		pencil.writeToPaper(paper, "a");
-		String expected = "a";
-		String paperText = paper.getText();
-		assertEquals(expected,paperText);		
-	}
-	
-	@Test
-	public void pencilShouldWriteBlankSpacesWhenOutOfWritePoints() {
-		Pencil pencil = new Pencil(10,10,100);
-		String text = "I am more than 10";
-		Paper paper = new Paper();
-		
-		pencil.writeToPaper(paper, text);
-		String expected = "I am more th     ";
-		String paperText = paper.getText();
-		assertEquals(expected,paperText);
-	}
 
 }
