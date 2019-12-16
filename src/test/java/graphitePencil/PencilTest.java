@@ -44,12 +44,12 @@ public class PencilTest {
 		Paper paper = new Paper();
 		
 		// Test with 1 character
-		pencil.writeToPaper(paper, "a");
+		pencil.writeToPaper(paper, "A");
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(8,availablePoints);
 		
 		// Test with 3 characters
-		pencil.writeToPaper(paper, "aaa");
+		pencil.writeToPaper(paper, "BBB");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(2,availablePoints);		
 	}

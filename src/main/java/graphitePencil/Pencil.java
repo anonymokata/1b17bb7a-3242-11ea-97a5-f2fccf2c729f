@@ -51,6 +51,9 @@ public class Pencil {
 				writePoints--;
 				graphitePoints--;
 				degradation.append(writeChar);
+			} else {
+				// this is whitespace, append with no penalty
+				degradation.append(writeChar);
 			}
 		} else {
 			degradation.append(' ');
