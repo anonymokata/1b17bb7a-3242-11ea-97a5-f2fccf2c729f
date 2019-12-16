@@ -185,21 +185,28 @@ public class PencilTest {
 	 ***************************/
 	@Test
 	public void editorShouldEditPaper() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper(" ");
 		
+		// Test with 1 lower character
+		pencil.editOnPaper(paper, "a",0);
+		String expected = "a";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	@Test
 	public void whenEditingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,10);
-		Paper paper = new Paper();
+		Paper paper = new Paper("    ");
 		
 		// Test with 1 lower character
-		pencil.editOnPaper(paper, "a");
+		pencil.editOnPaper(paper, "a",0);
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(9,availablePoints);
 		
 		// Test with 3 lowercase characters
-		pencil.editOnPaper(paper, "aaa");
+		pencil.editOnPaper(paper, "bcd",1);
 		availablePoints = pencil.getWritePoints();
 		assertEquals(6,availablePoints);		
 	}
