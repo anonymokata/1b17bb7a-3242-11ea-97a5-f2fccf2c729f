@@ -75,7 +75,7 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaperWhenIncludedInString() {
+	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaper() {
 		// Use WSEraser to erase special whitespace characters
 		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
 		Paper story = new Paper(text);

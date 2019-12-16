@@ -98,6 +98,11 @@ public class PencilTest {
 		assertEquals(0,availablePoints);
 	}
 	
+	@Test
+	public void whenOutOfWritePointsPencilShouldNotLostAnymorePointsWhileWriting() {
+		// IE should never have negative write points
+	}
+	
 	/*********************** Write Degradation Tests ***********************/
 	@Test
 	public void whenWritingPencilShouldAlwaysPreserveWhiteSpaceCharactersEvenWhenOutOfPoints() {
@@ -197,7 +202,7 @@ public class PencilTest {
 	 *     EDIT UNIT TESTS     *
 	 ***************************/
 	@Test
-	public void editorShouldEditPaper() {
+	public void pencilShouldEditPaper() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper(" ");
 		
@@ -208,6 +213,21 @@ public class PencilTest {
 		assertEquals(expected,paperText);
 	}
 	
+	@Test
+	public void pencilShouldCollideIfPaperAndReplacementAreNonWhiteSpaceCharacters() {
+		
+	}
+	
+	@Test
+	public void pencilNotEditPaperIfReplacementStringIsAWhiteSpaceCharacter() {
+		
+	}
+	
+	public void pencilShouldWriteAllOverflowTextAsIsToPaper() {
+		
+	}
+	
+	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void whenEditingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,10);
@@ -225,7 +245,27 @@ public class PencilTest {
 	}
 	
 	@Test
-	public void whenEditingPencilShouldNotLosePointsForSpecialWhiteSpaceCharacters() {
+	public void whenEditingPencilShouldLoseTwoWritePointsPerUpperCaseLetter() {
+		
+	}
+	
+	@Test
+	public void whenEditingPencilShouldNotLoseWritePointsForBlankSpace() {
+		
+	}
+	
+	@Test
+	public void whenEditingPencilShouldLoseOneWritePointPerCollision() {
+		
+	}
+	
+	@Test
+	public void whenOutOfWritePointsPencilShouldNotLoseAnymorePointsWhileEditing() {
+		// IE should never have negative write points
+	}
+	
+	@Test
+	public void whenEditingPencilShouldNotLoseWritePointsForSpecialWhiteSpaceCharacters() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper("The     jumped over the moon.");
 		
@@ -235,18 +275,46 @@ public class PencilTest {
 		pencil.editOnPaper(paper,replacement,startIndex);
 		
 		int availablePoints = pencil.getWritePoints();
-		System.out.println(availablePoints);
-		System.out.println(paper.getText());
 		assertEquals(7,availablePoints);
 	}
 	
+	/*********************** Edit Degradation Tests ***********************/
 	@Test
-	public void whenOutOfWritePointsEditorShouldNotCollideAnyCharacters() {
+	public void whenOutOfWritePointsPencilShouldNotCollideAnyCharacters() {
+		Pencil pencil = new Pencil(3,10,10);
+		Paper paper = new Paper("The     jumped over the moon.");
+		
+		// Starting 1 space after 'The'
+		int startIndex = 4;
+		String replacement = "cow ran";
+		pencil.editOnPaper(paper,replacement,startIndex);
+	}
+	
+	@Test
+	public void whenOutOfWritePointsPencilShoudNotOverWriteAnyCharactersOnPaper() {
 		
 	}
 	
 	@Test
-	public void whenOutOfWritePointsEditorShoudNotOverWriteAnyCharacters() {
+	public void whenOutOfWritePointsOverflowTextWhiteSpaceShouldBePreservers() {
+		// IE pencil should still keeps \n\t\f etc for overflow only
+	}
+	
+	/*****************************
+	 *     ERASER UNIT TESTS     *
+	 *****************************/
+	@Test
+	public void pencilShouldEraseTextFromPaper() {
+		
+	}
+	
+	@Test
+	public void pencilShouldNotEraseSpecialWhiteCharacters() {
+		
+	}
+	
+	@Test
+	public void whenOutOfErasePointsPencilShouldNotEraseFromPaper() {
 		
 	}
 }
