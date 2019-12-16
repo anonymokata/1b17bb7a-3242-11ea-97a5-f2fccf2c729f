@@ -6,18 +6,6 @@ import org.junit.Test;
 
 public class PencilTest {
 	
-	@Test
-	public void pencilShouldWriteOnPaper() {
-		Pencil pencil = new Pencil(10,10,100);
-		Paper paper = new Paper();
-		
-		// Simple write to paper using pencil
-		pencil.writeToPaper(paper, "a");
-		String expected = "a";
-		String paperText = paper.getText();
-		assertEquals(expected,paperText);		
-	}
-	
 	/*******************************************
 	 * POINT DEGRADATION UNIT TESTING : START
 	 ******************************************/
@@ -27,12 +15,12 @@ public class PencilTest {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();
 		
-		// Test with 1 character
+		// Test with 1 lower character
 		pencil.writeToPaper(paper, "a");
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(9,availablePoints);
 		
-		// Test with 3 characters
+		// Test with 3 lowercase characters
 		pencil.writeToPaper(paper, "aaa");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(6,availablePoints);		
@@ -43,12 +31,12 @@ public class PencilTest {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();
 		
-		// Test with 1 character
+		// Test with 1 uppercase character
 		pencil.writeToPaper(paper, "A");
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(8,availablePoints);
 		
-		// Test with 3 characters
+		// Test with 3 uppercase characters
 		pencil.writeToPaper(paper, "BBB");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(2,availablePoints);		
@@ -59,12 +47,12 @@ public class PencilTest {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();
 		
-		// Test with 1 character
+		// Test with space character
 		pencil.writeToPaper(paper, "    ");
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(10,availablePoints);
 		
-		// Test with 3 characters
+		// Test with mutliple forms of white space
 		pencil.writeToPaper(paper, "\t\n\r \f  ");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(10,availablePoints);
@@ -85,7 +73,21 @@ public class PencilTest {
 		pencil.writeToPaper(paper, "<.  />");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(1,availablePoints);
-	}	
+	}
+	
+	@Test
+	public void AfterSharpeningPencilWritingPointsShouldGoBackToDefault() {
+		int defaultWritePoints = 10;
+		Pencil pencil = new Pencil(defaultWritePoints,10,100);
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, "abcd");
+		pencil.sharpen();
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(defaultWritePoints,availablePoints);
+		
+		
+	}
 	// WRITING POINTS : END
 	
 	// EDITING POINTS : START
@@ -98,6 +100,19 @@ public class PencilTest {
 	/**************************************
 	/* POINT DEGRADATION UNIT TESTS : END *
 	 **************************************/
+	
+	@Test
+	public void pencilShouldWriteOnPaper() {
+		Pencil pencil = new Pencil(10,10,100);
+		Paper paper = new Paper();
+		
+		// Simple write to paper using pencil
+		pencil.writeToPaper(paper, "a");
+		String expected = "a";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);		
+	}
+	
 	@Test
 	public void pencilShouldWriteBlankSpacesWhenOutOfWritePoints() {
 		Pencil pencil = new Pencil(10,10,100);
