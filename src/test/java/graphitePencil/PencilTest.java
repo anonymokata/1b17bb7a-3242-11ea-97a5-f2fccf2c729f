@@ -48,7 +48,7 @@ public class PencilTest {
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(10,availablePoints);
 		
-		// Test with mutliple forms of white space
+		// Test with multiple forms of white space
 		pencil.writeToPaper(paper, "\t\n\r \f  ");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(10,availablePoints);
@@ -81,7 +81,6 @@ public class PencilTest {
 		int availablePoints = pencil.getWritePoints();
 		int defaultPoints = pencil.getDefaultWritePoints();
 		assertEquals(defaultPoints,availablePoints);
-
 	}
 	
 	@Test
@@ -93,6 +92,37 @@ public class PencilTest {
 		pencil.sharpen();
 		int pencilLength = pencil.getPencilLength();
 		assertEquals(9,pencilLength);
+	}
+	
+	@Test
+	public void pencilShouldNotSharpenIfPencilLengthIsZero() {
+		Pencil pencil = new Pencil(10,10,0);
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, "abcd");
+		pencil.sharpen();
+		int writePoints = pencil.getWritePoints();
+		assertEquals(6,writePoints);
+	}
+	
+	@Test
+	public void pencilShouldReturnFalseIfFailedToSharpen() {
+		Pencil pencil = new Pencil(10,10,0);
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, "abcd");
+		boolean sharpened = pencil.sharpen();
+		assertFalse(sharpened);
+	}
+	
+	@Test
+	public void pencilShouldReturnTrueIfSharpened() {
+		Pencil pencil = new Pencil(10,10,1);
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, "abcd");
+		boolean sharpened = pencil.sharpen();
+		assertTrue(sharpened);
 	}
 	
 	@Test
