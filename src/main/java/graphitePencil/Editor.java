@@ -19,6 +19,8 @@ public class Editor {
 					
 					if(currentChar == ' ') {
 						paperText.setCharAt(startIndex + i, replaceChar);
+					} else if(Character.isWhitespace(replaceChar)) { 
+						paperText.setCharAt(startIndex + i, currentChar);
 					} else if(!Character.isWhitespace(currentChar)) {
 						paperText.setCharAt(startIndex + i, '@');
 					}
