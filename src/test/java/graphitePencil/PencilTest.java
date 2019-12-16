@@ -89,7 +89,13 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldLoseOnePointForAnyFailedWriteAttempts() {
+		Pencil pencil = new Pencil(1,10,10);
+		Paper paper = new Paper();
 		
+		// Test with 1 character
+		pencil.writeToPaper(paper, "A");
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(0,availablePoints);
 	}
 	
 	/*********************** Write Degradation Tests ***********************/
@@ -118,7 +124,14 @@ public class PencilTest {
 	}
 	
 	public void whenNotEnoughPointsPencilShouldWriteBlankSpacesForNonWhiteSpaceCharacters() {
+		Pencil pencil = new Pencil(1,10,10);
+		Paper paper = new Paper();
 		
+		// Test with 1 character
+		pencil.writeToPaper(paper, "A");
+		String expected = " ";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	/******************************
@@ -210,9 +223,21 @@ public class PencilTest {
 		availablePoints = pencil.getWritePoints();
 		assertEquals(6,availablePoints);		
 	}
+	
 	@Test
-	public void whenOutOfWritePointsEditorShouldNotCollideAnyCharactersFromReplacementText() {
+	public void whenEditingPencilShouldNotLosePointsForSpecialWhiteSpaceCharacters() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("The     jumped over the moon.");
 		
+		// Starting 1 space after 'The'
+		int startIndex = 4;
+		String replacement = "cow \n\n";
+		pencil.editOnPaper(paper,replacement,startIndex);
+		
+		int availablePoints = pencil.getWritePoints();
+		System.out.println(availablePoints);
+		System.out.println(paper.getText());
+		assertEquals(7,availablePoints);
 	}
 	
 	@Test
@@ -221,7 +246,7 @@ public class PencilTest {
 	}
 	
 	@Test
-	public void whenOutOfWritePointsEditorShoudNotOverWriteAnyCharacter() {
+	public void whenOutOfWritePointsEditorShoudNotOverWriteAnyCharacters() {
 		
 	}
 }

@@ -38,10 +38,26 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 	
+	@Test
+	public void editorShouldNotWriteSpecialWhiteSpaceFromReplacementString() {
+		// Use WSEditor to write special white space characters
+		String text = "The     jumped over the moon.";
+		Paper story = new Paper(text);
+		
+		// Starting 1 space after 'The'
+		int startIndex = 4;
+		String replacement = "cow \n\n";
+		Editor.editOnPaper(story,replacement,startIndex);
+		
+		String expected = "The cow jumped over the moon.";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
+	
 	/*********************** Collision Tests ***********************/
 	@Test
 	public void editorShouldNotCollideWithSpecialWhiteSpaceCharacters() {
-		// WSEditor can write over special whitespace characters
+		// WSEditor can write over special white space characters
 		String text = "The cow jumped over the moon.\nmooooo!";
 		Paper story = new Paper(text);
 		

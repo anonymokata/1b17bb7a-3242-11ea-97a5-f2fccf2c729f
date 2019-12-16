@@ -15,17 +15,17 @@ public class Editor {
 					paperText.append(replaceChar);
 				} else {
 					// current character must be read here or IndexOutOfBounds happens
-					char currentChar = paperText.charAt(startIndex + i);
+					char paperChar = paperText.charAt(startIndex + i);
 					
 					if(Character.isWhitespace(replaceChar)) {
-						paperText.setCharAt(startIndex + i, currentChar);
-					} else if(currentChar == ' ') { 
+						paperText.setCharAt(startIndex + i, paperChar);
+					} else if(paperChar == ' ') { 
 						paperText.setCharAt(startIndex + i, replaceChar);
-					} else if(!Character.isWhitespace(currentChar)) {
+					} else if(!Character.isWhitespace(paperChar)) {
 						paperText.setCharAt(startIndex + i, '@');
 					} else {
 						// currentChar is a special whitespace
-						paperText.setCharAt(startIndex + i, currentChar);
+						paperText.setCharAt(startIndex + i, paperChar);
 					}
 				}
 			}

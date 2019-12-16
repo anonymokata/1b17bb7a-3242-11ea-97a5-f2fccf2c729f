@@ -45,7 +45,7 @@ public class Pencil {
 				characterPointWriting(degradationReplacementText,replaceChar);
 			} else {
 				char paperChar = paperText.charAt(startIndex + i);
-				if(!Character.isWhitespace(paperChar)) {
+				if(!Character.isWhitespace(paperChar) && !Character.isWhitespace(replaceChar)) {
 					// write a space or @ symbol for collision
 					collisionPointWriting(degradationReplacementText);
 				} else {
