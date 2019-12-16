@@ -58,22 +58,28 @@ public class Pencil {
 	}
 	
 	public boolean sharpen() {
-		this.writePoints = this.defaultWritePoints;
-		return true;
+		if(this.pencilLength > 0) {
+			this.writePoints = this.defaultWritePoints;
+			return true;			
+		} else {
+			return false;
+		}
 	}
 
 	public int getWritePoints() {
 		return this.writePoints;
-	}
-	
-	public int getPencilLength() {
-		return this.pencilLength;
 	}
 
 	public int getErasePoints() {
 		return this.erasePoints;
 	}
 	
-
+	public int getPencilLength() {
+		return this.pencilLength;
+	}
+	
+	public int getDefaultWritePoints() {
+		return this.getDefaultWritePoints();
+	}
 
 }

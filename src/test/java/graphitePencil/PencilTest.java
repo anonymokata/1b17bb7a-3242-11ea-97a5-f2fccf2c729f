@@ -5,14 +5,10 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class PencilTest {
-	
-	/*******************************************
-	 * POINT DEGRADATION UNIT TESTING : START
-	 ******************************************/
-	// WRITING POINTS : START
+
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
-		Pencil pencil = new Pencil(10,10,100);
+		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 lower character
@@ -28,7 +24,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenWritingPencilShouldLoseTwoWritePointPerUpperCaseLetter() {
-		Pencil pencil = new Pencil(10,10,100);
+		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 uppercase character
@@ -44,7 +40,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenWritingPencilShouldNotLoseWritePointsForAnyWhiteSpace() {
-		Pencil pencil = new Pencil(10,10,100);
+		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
 		// Test with space character
@@ -61,7 +57,7 @@ public class PencilTest {
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerNonWhiteSpaceNonAlphabeticalCharacter() {
 		// Basically, default to one point loss for everything else
-		Pencil pencil = new Pencil(20,10,100);
+		Pencil pencil = new Pencil(20,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 character
@@ -74,38 +70,30 @@ public class PencilTest {
 		availablePoints = pencil.getWritePoints();
 		assertEquals(1,availablePoints);
 	}
-	// WRITING POINTS : END
 	
-	// SHARPENING POINTS : START
 	@Test
 	public void AfterSharpeningPencilWritingPointsShouldGoBackToDefault() {
-		int defaultWritePoints = 10;
-		Pencil pencil = new Pencil(defaultWritePoints,10,100);
+		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, "abcd");
 		pencil.sharpen();
 		int availablePoints = pencil.getWritePoints();
-		assertEquals(defaultWritePoints,availablePoints);
+		int defaultPoints = pencil.getDefaultWritePoints();
+		assertEquals(defaultPoints,availablePoints);
 
 	}
 	
 	@Test
 	public void AfterSharpeningPencilLengthShouldDecreaseByOne() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper();
 		
+		pencil.writeToPaper(paper, "abcd");
+		pencil.sharpen();
+		int pencilLength = pencil.getPencilLength();
+		assertEquals(9,pencilLength);
 	}
-	// SHARPENING POINTS : END
-	
-	// EDITING POINTS : START
-	
-	// EDITING POINTS : END
-	
-	// ERASING POINTS : START
-	
-	// ERASING POINTS : END
-	/**************************************
-	/* POINT DEGRADATION UNIT TESTS : END *
-	 **************************************/
 	
 	@Test
 	public void pencilShouldWriteOnPaper() {
