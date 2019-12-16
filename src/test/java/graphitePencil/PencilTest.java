@@ -18,6 +18,10 @@ public class PencilTest {
 		assertEquals(expected,paperText);		
 	}
 	
+	/*******************************************
+	 * POINT DEGRADATION UNIT TESTING : START
+	 ******************************************/
+	// WRITING POINTS : START
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,100);
@@ -50,8 +54,8 @@ public class PencilTest {
 		assertEquals(2,availablePoints);		
 	}
 	
-	
-	public void whenWritingPencilShouldNotLosePointsForAnyWhiteSpace() {
+	@Test
+	public void whenWritingPencilShouldNotLoseWritePointsForAnyWhiteSpace() {
 		Pencil pencil = new Pencil(10,10,100);
 		Paper paper = new Paper();
 		
@@ -67,11 +71,43 @@ public class PencilTest {
 	}
 	
 	@Test
-	public void pencilShouldWriteBlankSpacesWhenOutOfWritePoints() {
-		Pencil pencil = new Pencil(10,10,100);
+	public void whenWritingPencilShouldLoseOneWritePointPerNonWhiteSpaceNonAlphabeticalCharacter() {
+		// Basically, default to one point loss for everything else
+		Pencil pencil = new Pencil(20,10,100);
 		Paper paper = new Paper();
 		
-		pencil.writeToPaper(paper, "I am more than 10 characters");
+		// Test with 1 character
+		pencil.writeToPaper(paper, "!@#$%^&*()_+-=~");
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(5,availablePoints);
+		
+		// Test with 3 characters
+		pencil.writeToPaper(paper, "<.  />");
+		availablePoints = pencil.getWritePoints();
+		assertEquals(1,availablePoints);
+	}	
+	// WRITING POINTS : END
+	
+	// EDITING POINTS : START
+	
+	// EDITING POINTS : END
+	
+	// ERASING POINTS : START
+	
+	// ERASING POINTS : END
+	/**************************************
+	/* POINT DEGRADATION UNIT TESTS : END *
+	 **************************************/
+	@Test
+	public void pencilShouldWriteBlankSpacesWhenOutOfWritePoints() {
+		Pencil pencil = new Pencil(10,10,100);
+		String text = "I am more than 10";
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, text);
+		String expected = "I am more th     ";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 
 }

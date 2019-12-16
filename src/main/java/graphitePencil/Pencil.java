@@ -20,18 +20,41 @@ public class Pencil {
 		
 		for(int i = 0; i < writeText.length(); i++) {
 			char writeChar = writeText.charAt(i);
-			if(writePoints > 0) {
-				if(Character.isLowerCase(writeChar)) {
-					writePoints--;
-					graphitePoints--;
-				}
-				degradation.append(writeChar);
-			}
+			characterPointWriting(degradation,writeChar);
 		}
 		
 		String degraded = degradation.toString();
 		System.out.println(degraded);
 		Writer.writeToPaper(paper, degraded);
+	}
+	
+	private void characterPointWriting(StringBuilder degradation, char writeChar) {
+		if(writePoints > 0) {
+			if(Character.isLowerCase(writeChar)) {
+				writePoints--;
+				graphitePoints--;
+				degradation.append(writeChar);
+			} else if(Character.isUpperCase(writeChar)) {
+				if(writePoints > 1) {
+					writePoints -= 2;
+					graphitePoints -= 2;
+					degradation.append(writeChar);
+				}  else {
+					// penalize for attempting to write without enough points
+					// essentially zero out and place a blank space
+					writePoints--;
+					graphitePoints--;						
+					degradation.append(' ');
+				}
+			} else if(!Character.isWhitespace(writeChar)){
+				// default to one for anything else that isn't whitespace
+				writePoints--;
+				graphitePoints--;
+				degradation.append(writeChar);
+			}
+		} else {
+			degradation.append(' ');
+		}
 	}
 
 	public int getWritePoints() {
@@ -45,5 +68,7 @@ public class Pencil {
 	public int getErasePoints() {
 		return this.erasePoints;
 	}
+	
+
 
 }
