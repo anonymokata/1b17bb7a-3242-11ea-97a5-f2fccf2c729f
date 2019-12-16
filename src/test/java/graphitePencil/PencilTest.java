@@ -74,7 +74,9 @@ public class PencilTest {
 		availablePoints = pencil.getWritePoints();
 		assertEquals(1,availablePoints);
 	}
+	// WRITING POINTS : END
 	
+	// SHARPENING POINTS : START
 	@Test
 	public void AfterSharpeningPencilWritingPointsShouldGoBackToDefault() {
 		int defaultWritePoints = 10;
@@ -85,10 +87,14 @@ public class PencilTest {
 		pencil.sharpen();
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(defaultWritePoints,availablePoints);
-		
+
+	}
+	
+	@Test
+	public void AfterSharpeningPencilLengthShouldDecreaseByOne() {
 		
 	}
-	// WRITING POINTS : END
+	// SHARPENING POINTS : END
 	
 	// EDITING POINTS : START
 	
