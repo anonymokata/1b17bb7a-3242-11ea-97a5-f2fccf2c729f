@@ -17,12 +17,15 @@ public class Editor {
 					// current character must be read here or IndexOutOfBounds happens
 					char currentChar = paperText.charAt(startIndex + i);
 					
-					if(currentChar == ' ') {
-						paperText.setCharAt(startIndex + i, replaceChar);
-					} else if(Character.isWhitespace(replaceChar)) { 
+					if(Character.isWhitespace(replaceChar)) {
 						paperText.setCharAt(startIndex + i, currentChar);
+					} else if(currentChar == ' ') { 
+						paperText.setCharAt(startIndex + i, replaceChar);
 					} else if(!Character.isWhitespace(currentChar)) {
 						paperText.setCharAt(startIndex + i, '@');
+					} else {
+						// currentChar is a special whitespace
+						paperText.setCharAt(startIndex + i, currentChar);
 					}
 				}
 			}

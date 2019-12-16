@@ -76,11 +76,11 @@ public class EditTest {
 		Paper story = new Paper(text);
 		
 		// Starting at new line
-		int startIndex = 29;
+		int startIndex = 4;
 		String replacement = "cow ran over";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow @@@p@@e@ver the moon.\n@@@@oo!";
+		String expected = "The cow @@@p@@e@ver the moon.";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
@@ -91,11 +91,11 @@ public class EditTest {
 		Paper story = new Paper(text);
 		
 		// Starting at new line
-		int startIndex = 29;
+		int startIndex = 4;
 		String replacement = "cow\nran\nover";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow @@@p@@e@ver the moon.\n@@@@oo!";
+		String expected = "The cow @@@p@@e@ver the moon.";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
