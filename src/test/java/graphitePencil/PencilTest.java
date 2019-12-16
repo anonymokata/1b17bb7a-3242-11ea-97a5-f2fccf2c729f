@@ -21,7 +21,7 @@ public class PencilTest {
 		assertEquals(expected,paperText);		
 	}
 	
-	// Point Degradation Tests : Start
+	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,10);
@@ -86,9 +86,8 @@ public class PencilTest {
 		availablePoints = pencil.getWritePoints();
 		assertEquals(0,availablePoints);
 	}
-	// Point Degradation Tests : End
 	
-	// Write Degradation Tests : Start
+	/*********************** Write Degradation Tests ***********************/
 	@Test
 	public void whenWritingPencilShouldAlwaysPreserveWhiteSpaceCharactersEvenWhenOutOfPoints() {
 		Pencil pencil = new Pencil(4,10,10);
@@ -112,7 +111,6 @@ public class PencilTest {
 		String paperText = paper.getText();
 		assertEquals(expected,paperText);
 	}
-	// Write Degradation Tests : End
 	/**************************
 	 * WRITE UNIT TESTS : END *
 	 **************************/
@@ -143,6 +141,7 @@ public class PencilTest {
 		assertEquals(9,pencilLength);
 	}
 	
+	/*********************** Sharpen Detection Tests ***********************/
 	@Test
 	public void pencilShouldNotSharpenIfPencilLengthIsZero() {
 		Pencil pencil = new Pencil(10,10,0);
@@ -180,6 +179,7 @@ public class PencilTest {
 	/***************************
 	 * EDIT UNIT TESTS : START *
 	 ***************************/
+	/*********************** Edit Degradation Tests ***********************/
 	@Test
 	public void whenOutOfWritePointsEditorShouldNotCollideAnyCharactersFromReplacementText() {
 		

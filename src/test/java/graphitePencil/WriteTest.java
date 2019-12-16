@@ -10,6 +10,7 @@ import org.junit.Test;
  */
 public class WriteTest {
 
+	/*********************** Write Tests ***********************/
 	@Test
 	public void writerShouldWriteToBlankPaper() {
 		// Create a pencil object

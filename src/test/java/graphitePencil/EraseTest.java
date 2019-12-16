@@ -6,6 +6,7 @@ import org.junit.Test;
 
 public class EraseTest {
 
+	/*********************** Erase Tests ***********************/
 	@Test
 	public void eraserShouldEraseTextFromPaper() {
 		// Create paper with text
@@ -30,7 +31,7 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldContinuetoEraseLastOccurenceofTextFromPaper() {
+	public void eraserShouldContinueToEraseLastOccurenceOfTextFromPaper() {
 		String text = "She told me that she loved me. I said I loved her back and my love would never stop.";
 		Paper story = new Paper(text);
 		
@@ -75,6 +76,7 @@ public class EraseTest {
 	
 	@Test
 	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaperWhenIncludedInString() {
+		// Use WSEraser to erase special whitespace characters
 		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
 		Paper story = new Paper(text);
 		
@@ -122,6 +124,7 @@ public class EraseTest {
 		assertEquals(expected,paperText);
 	}
 	
+	/*********************** Erase Detection Tests ***********************/
 	@Test
 	public void eraserShouldReturnFalseIfNoCharactersWereErased() {
 		String text = "She told me that she loved me.\nI said I didn't love her back. ###";

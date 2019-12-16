@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class EditTest {
 
-	/*********************** Edit Testing ***********************/
+	/*********************** Edit Tests ***********************/
 	@Test
 	public void editorShouldEditBlankSpaceOnPaperWithReplacementString() {
 		String text = "She       me. She loves me not.";
@@ -38,7 +38,7 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 	
-	/*********************** Collision Testing ***********************/
+	/*********************** Collision Tests ***********************/
 	@Test
 	public void editorShouldNotCollideWithSpecialWhiteSpaceCharacters() {
 		// WSEditor can write over special whitespace characters
@@ -100,7 +100,7 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 	
-	/*********************** Overflow Testing ***********************/
+	/*********************** Overflow Tests ***********************/
 	@Test
 	public void editorShouldWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
 		String text = "The cow goes ";
@@ -116,7 +116,7 @@ public class EditTest {
 		assertEquals(expected,paperText);
 	}
 
-	/*********************** Start Index Testing ***********************/
+	/*********************** Edit Detection Testing ***********************/
 	@Test
 	public void editorShouldNotEditPaperIfStartIndexGreaterThanPaperLength() {
 		Paper story = new Paper();
