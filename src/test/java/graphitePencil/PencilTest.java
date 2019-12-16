@@ -7,7 +7,7 @@ import org.junit.Test;
 public class PencilTest {
 
 	/****************************
-	 * WRITE UNIT TESTS : START *
+	 *     WRITE UNIT TESTS     *
 	 ****************************/
 	@Test
 	public void pencilShouldWriteOnPaper() {
@@ -111,12 +111,10 @@ public class PencilTest {
 		String paperText = paper.getText();
 		assertEquals(expected,paperText);
 	}
-	/**************************
-	 * WRITE UNIT TESTS : END *
-	 **************************/
+
 	
 	/******************************
-	 * SHARPEN UNIT TESTS : START *
+	 *     SHARPEN UNIT TESTS     *
 	 ******************************/
 	@Test
 	public void afterSharpeningPencilWritingPointsShouldGoBackToDefault() {
@@ -172,19 +170,28 @@ public class PencilTest {
 		boolean sharpened = pencil.sharpen();
 		assertTrue(sharpened);
 	}
-	/****************************
-	 * SHARPEN UNIT TESTS : END *
-	 ****************************/
+	
 	
 	/***************************
-	 * EDIT UNIT TESTS : START *
+	 *     EDIT UNIT TESTS     *
 	 ***************************/
-	/*********************** Edit Degradation Tests ***********************/
+	@Test
+	public void editorShouldEditPaper() {
+		
+	}
+	
 	@Test
 	public void whenOutOfWritePointsEditorShouldNotCollideAnyCharactersFromReplacementText() {
 		
 	}
-	/*************************
-	 * EDIT UNIT TESTS : END *
-	 *************************/
+	
+	@Test
+	public void whenOutOfWritePointsEditorShouldNotCollideAnyCharacters() {
+		
+	}
+	
+	@Test
+	public void whenOutOfWritePointsEditorShoudNotOverWriteAnyCharacter() {
+		
+	}
 }
