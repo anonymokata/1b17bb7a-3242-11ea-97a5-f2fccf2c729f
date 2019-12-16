@@ -10,6 +10,19 @@ public class PencilTest {
 	 * WRITE UNIT TESTS : START *
 	 ****************************/
 	@Test
+	public void pencilShouldWriteOnPaper() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper();
+		
+		// Simple write to paper using pencil
+		pencil.writeToPaper(paper, "a");
+		String expected = "a";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);		
+	}
+	
+	// Point Degradation Tests : Start
+	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
@@ -26,7 +39,7 @@ public class PencilTest {
 	}
 	
 	@Test
-	public void whenWritingPencilShouldLoseTwoWritePointPerUpperCaseLetter() {
+	public void whenWritingPencilShouldLoseTwoWritePointsPerUpperCaseLetter() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
@@ -69,37 +82,15 @@ public class PencilTest {
 		assertEquals(5,availablePoints);
 		
 		// Test with 3 characters
-		pencil.writeToPaper(paper, "<.  />");
+		pencil.writeToPaper(paper, "<.  />9");
 		availablePoints = pencil.getWritePoints();
-		assertEquals(1,availablePoints);
+		assertEquals(0,availablePoints);
 	}
+	// Point Degradation Tests : End
 	
+	// Write Degradation Tests : Start
 	@Test
-	public void pencilShouldWriteOnPaper() {
-		Pencil pencil = new Pencil(10,10,10);
-		Paper paper = new Paper();
-		
-		// Simple write to paper using pencil
-		pencil.writeToPaper(paper, "a");
-		String expected = "a";
-		String paperText = paper.getText();
-		assertEquals(expected,paperText);		
-	}
-	
-	@Test
-	public void pencilShouldWriteBlankSpacesForNonWhiteSpaceCharactersWhenOutOfWritePoints() {
-		Pencil pencil = new Pencil(10,10,10);
-		String text = "I am more than 10";
-		Paper paper = new Paper();
-		
-		pencil.writeToPaper(paper, text);
-		String expected = "I am more th     ";
-		String paperText = paper.getText();
-		assertEquals(expected,paperText);
-	}
-	
-	@Test
-	public void pencilShouldAlwaysPreserveWhiteSpaceCharactersEvenWhenOutOfPoints() {
+	public void whenWritingPencilShouldAlwaysPreserveWhiteSpaceCharactersEvenWhenOutOfPoints() {
 		Pencil pencil = new Pencil(4,10,10);
 		String text = "I am newline \n";
 		Paper paper = new Paper();
@@ -109,16 +100,28 @@ public class PencilTest {
 		String paperText = paper.getText();
 		assertEquals(expected,paperText);
 	}
+	
+	@Test
+	public void whenOutOfWritePointsPencilShouldWriteBlankSpacesForNonWhiteSpaceCharacters() {
+		Pencil pencil = new Pencil(10,10,10);
+		String text = "I am more than 10";
+		Paper paper = new Paper();
+		
+		pencil.writeToPaper(paper, text);
+		String expected = "I am more th     ";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
+	}
+	// Write Degradation Tests : End
 	/**************************
 	 * WRITE UNIT TESTS : END *
 	 **************************/
-	
 	
 	/******************************
 	 * SHARPEN UNIT TESTS : START *
 	 ******************************/
 	@Test
-	public void AfterSharpeningPencilWritingPointsShouldGoBackToDefault() {
+	public void afterSharpeningPencilWritingPointsShouldGoBackToDefault() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
@@ -130,7 +133,7 @@ public class PencilTest {
 	}
 	
 	@Test
-	public void AfterSharpeningPencilLengthShouldDecreaseByOne() {
+	public void afterSharpeningPencilLengthShouldDecreaseByOne() {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper();
 		
@@ -170,6 +173,7 @@ public class PencilTest {
 		boolean sharpened = pencil.sharpen();
 		assertTrue(sharpened);
 	}
-	
-
+	/****************************
+	 * SHARPEN UNIT TESTS : END *
+	 ****************************/
 }
