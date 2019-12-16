@@ -11,6 +11,7 @@ public class EditTest {
 		String text = "She       me. She loves me not.";
 		Paper story = new Paper(text);
 		
+		// Starting one space after 'She'
 		int startIndex = 4;
 		String replacement = "loves";
 		Editor.editOnPaper(story,replacement,startIndex);
@@ -21,10 +22,11 @@ public class EditTest {
 	}
 
 	@Test
-	public void editorShouldCollideWithAllNonWhiteSpaceCharactersWhenEditing() {
+	public void editorShouldCollideWithAllNonWhiteSpaceCharacters() {
 		String text = "The     jumped over the moon.";
 		Paper story = new Paper(text);
 		
+		// Starting 1 space after 'The'
 		int startIndex = 4;
 		String replacement = "whale";
 		Editor.editOnPaper(story,replacement,startIndex);
@@ -39,11 +41,27 @@ public class EditTest {
 		String text = "The cow jumped over the moon.\nmooooo!";
 		Paper story = new Paper(text);
 		
+		// Starting at new line in string
 		int startIndex = 29;
 		String replacement = "oiink";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
 		String expected = "The cow jumped over the moon.\n@@@@oo!";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void editorShouldNotCollideBlankSpacesFromReplacementText() {
+		String text = "The     jumped over the moon.";
+		Paper story = new Paper(text);
+		
+		// Starting 1 space after 'The'
+		int startIndex = 4;
+		String replacement = "cow ran over";
+		Editor.editOnPaper(story,replacement,startIndex);
+		
+		String expected = "The cow @@@p@@e@ver the moon.\n@@@@oo!";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}

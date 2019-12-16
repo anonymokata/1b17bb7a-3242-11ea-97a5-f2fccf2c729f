@@ -26,8 +26,15 @@ public class Pencil {
 		}
 		
 		String degraded = degradation.toString();
-		System.out.println(degraded);
 		Writer.writeToPaper(paper, degraded);
+	}
+	
+	public void eraseFromPaper() {
+		
+	}
+	
+	public void editOnPaper() {
+		
 	}
 	
 	private void characterPointWriting(StringBuilder degradation, char writeChar) {

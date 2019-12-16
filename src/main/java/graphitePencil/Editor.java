@@ -14,7 +14,7 @@ public class Editor {
 				if(startIndex + i >= paperText.length()) {
 					paperText.append(replaceChar);
 				} else {
-					// current character must be read here or IdexOutOfBounds happens
+					// current character must be read here or IndexOutOfBounds happens
 					char currentChar = paperText.charAt(startIndex + i);
 					
 					if(currentChar == ' ') {
