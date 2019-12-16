@@ -180,7 +180,10 @@ public class PencilTest {
 	/***************************
 	 * EDIT UNIT TESTS : START *
 	 ***************************/
-	
+	@Test
+	public void whenOutOfWritePointsEditorShouldNotCollideAnyCharactersFromReplacementText() {
+		
+	}
 	/*************************
 	 * EDIT UNIT TESTS : END *
 	 *************************/

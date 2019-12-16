@@ -20,6 +20,21 @@ public class EditTest {
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
+	
+	@Test
+	public void editorShouldEditSpecialWhiteSpaceCharactersWithReplacementString() {
+		String text = "The cow jumped over the moon.\n\n\f\t\nmooooo!";
+		Paper story = new Paper(text);
+		
+		// Starting at new line in string
+		int startIndex = 29;
+		String replacement = "oiink";
+		Editor.editOnPaper(story,replacement,startIndex);
+		
+		String expected = "The cow jumped over the moon.oiinkmooooo!";
+		String paperText = story.getText();
+		assertEquals(expected,paperText);
+	}
 
 	@Test
 	public void editorShouldCollideWithAllNonWhiteSpaceCharacters() {
@@ -37,7 +52,7 @@ public class EditTest {
 	}
 	
 	@Test
-	public void editorShouldNotCollideWithSpecialWhiteSpaceCharacters() {
+	public void editorShouldNotCollideWithWhiteSpaceCharacters() {
 		String text = "The cow jumped over the moon.\nmooooo!";
 		Paper story = new Paper(text);
 		
@@ -46,7 +61,7 @@ public class EditTest {
 		String replacement = "oiink";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow jumped over the moon.\n@@@@oo!";
+		String expected = "The cow jumped over the moon.o@@@@oo!";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
@@ -61,7 +76,7 @@ public class EditTest {
 		String replacement = "cow ran over";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow @@@p@@e@ver the moon.\n@@@@oo!";
+		String expected = "The cow @@@p@@e@ver the moon.";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
