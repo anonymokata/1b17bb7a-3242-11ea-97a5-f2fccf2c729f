@@ -292,12 +292,33 @@ public class PencilTest {
 	
 	@Test
 	public void whenOutOfWritePointsPencilShoudNotOverWriteAnyCharactersOnPaper() {
+		Pencil pencil = new Pencil(3,10,10);
+		Paper paper = new Paper("The     jumped over the moon.");
 		
+		// Starting 1 space after 'The'
+		int startIndex = 4;
+		String replacement = "cow ran\n\n\t\f";
+		pencil.editOnPaper(paper,replacement,startIndex);
+		
+		String expected = "The cow jumped over the moon.";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	@Test
-	public void whenOutOfWritePointsOverflowTextWhiteSpaceShouldBePreservers() {
+	public void whenOutOfWritePointsOverflowTextWhiteSpaceShouldBePreserved() {
 		// IE pencil should still keeps \n\t\f etc for overflow only
+		Pencil pencil = new Pencil(3,10,10);
+		Paper paper = new Paper("The    ");
+		
+		// Starting 1 space after 'The'
+		int startIndex = 4;
+		String replacement = "cow ran\n\n\t\f";
+		pencil.editOnPaper(paper,replacement,startIndex);
+		
+		String expected = "The cow    \n\n\t\f";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	/*****************************

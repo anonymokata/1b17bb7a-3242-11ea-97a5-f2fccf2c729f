@@ -3,18 +3,10 @@ package graphitePencil;
 /**
  * @author Adrian Hernandez
  */
-public class Pencil {
-	private int writePoints;
-	private int erasePoints;
-	private int pencilLength;
-	private final int defaultWritePoints;
+public class Pencil extends AbstractPencil {
 	
-	// Set paper to given string on instantiation
-	Pencil(int writePoints, int erasePoints, int pencilLength){
-		this.writePoints = writePoints;
-		this.erasePoints = erasePoints;
-		this.pencilLength = pencilLength;
-		this.defaultWritePoints = writePoints;
+	public Pencil(int writePoints, int erasePoints, int pencilLength){
+		super(writePoints,erasePoints,pencilLength);
 	}
 
 	public void writeToPaper(Paper paper, String writeText) {
@@ -59,8 +51,13 @@ public class Pencil {
 		Editor.editOnPaper(paper, degradedReplacementText, startIndex);
 	}
 	
-	public void eraseFromPaper() {
+	public void eraseFromPaper(Paper paper, String eraseText) {
+		StringBuilder degradationEraseText = new StringBuilder();
 		
+		// Create a "degrading" version of eraseText while tracking erasePoints
+		// NOTE: Erasing is done from right to left
+
+		// Use "degraded" writeText on paper
 	}
 	
 	private void characterPointWriting(StringBuilder degradation, char writeChar) {
@@ -99,34 +96,7 @@ public class Pencil {
 		}
 	}
 	
-	public boolean sharpen() {
-		if(pencilLength > 0) {
-			// Only reset if we still have length on pencil
-			writePoints = defaultWritePoints;
-			pencilLength--;
-			
-			// notify user of successful sharpening
-			return true;			
-		} else {
-			// notify user of failed sharpening
-			return false;
-		}
+	private void characterPointErasing(StringBuilder text) {
+		
 	}
-
-	public int getWritePoints() {
-		return writePoints;
-	}
-
-	public int getErasePoints() {
-		return erasePoints;
-	}
-	
-	public int getPencilLength() {
-		return pencilLength;
-	}
-	
-	public int getDefaultWritePoints() {
-		return defaultWritePoints;
-	}
-
 }
