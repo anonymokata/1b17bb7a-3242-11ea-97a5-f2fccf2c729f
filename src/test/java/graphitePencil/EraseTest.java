@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import eraser.Erasable;
+import eraser.ErasableFactory;
+
 public class EraseTest {
 	Erasable Eraser = ErasableFactory.getErasable(Erasables.Eraser);
 	

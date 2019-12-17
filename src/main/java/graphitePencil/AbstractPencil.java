@@ -1,5 +1,7 @@
 package graphitePencil;
 
+import eraser.Erasable;
+
 public abstract class AbstractPencil {
 	int writePoints;
 	int erasePoints;

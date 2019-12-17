@@ -1,16 +1,19 @@
-package graphitePencil;
+package eraser;
 
-public class Eraser extends Erasable {
+import graphitePencil.Paper;
 
+public class StrictEraser extends Erasable {
+	
+	@Override
 	public boolean eraseFromPaper(Paper paper, int startIndex, int endIndex) {
 		// Erase by replacing with spaces using indexes [Inclusive,Exclusive)
-		// Existing white space is preserved
+		// Existing white space on paper is NOT preserved
 		StringBuilder eraseText = new StringBuilder(paper.getText());
 		
 		boolean erased = false;
 		for(int i = startIndex; i < endIndex; i++) {
 			char currentChar = eraseText.charAt(i);
-			if(!Character.isWhitespace(currentChar)) {
+			if(currentChar != ' ') {
 				eraseText.setCharAt(i, ' ');
 				erased = true;
 			}
@@ -20,4 +23,5 @@ public class Eraser extends Erasable {
 		paper.setText(erasedPaper);
 		return erased;
 	}
+
 }

@@ -1,4 +1,6 @@
-package graphitePencil;
+package eraser;
+
+import graphitePencil.Erasables;
 
 public class ErasableFactory {
 	
