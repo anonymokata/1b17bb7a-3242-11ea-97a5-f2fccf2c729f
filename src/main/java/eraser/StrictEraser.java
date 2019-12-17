@@ -1,6 +1,6 @@
 package eraser;
 
-import graphitePencil.Paper;
+import paper.Paper;
 
 public class StrictEraser extends Erasable {
 	

@@ -1,4 +1,6 @@
-package graphitePencil;
+package editor;
+
+import paper.Paper;
 
 public class Editor {
 	public static boolean editOnPaper(Paper paper, String replacementText, int startIndex) {

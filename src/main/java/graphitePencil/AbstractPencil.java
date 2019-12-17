@@ -1,6 +1,11 @@
 package graphitePencil;
 
+import editor.Editable;
+import editor.Editor;
 import eraser.Erasable;
+import paper.Paper;
+import writer.Writable;
+import writer.Writer;
 
 public abstract class AbstractPencil {
 	int writePoints;

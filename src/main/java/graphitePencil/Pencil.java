@@ -1,6 +1,7 @@
 package graphitePencil;
 
 import eraser.ErasableFactory;
+import eraser.Erasables;
 
 /**
  * @author Adrian Hernandez

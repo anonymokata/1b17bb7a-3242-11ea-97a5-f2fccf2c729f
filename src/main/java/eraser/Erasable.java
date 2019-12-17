@@ -1,6 +1,6 @@
 package eraser;
 
-import graphitePencil.Paper;
+import paper.Paper;
 
 public abstract class Erasable {
 	public boolean eraseFromPaper(Paper paper, String desiredText) {

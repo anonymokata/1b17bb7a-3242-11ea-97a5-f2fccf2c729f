@@ -6,6 +6,8 @@ import org.junit.Test;
 
 import eraser.Erasable;
 import eraser.ErasableFactory;
+import eraser.Erasables;
+import paper.Paper;
 
 public class EraseTest {
 	Erasable Eraser = ErasableFactory.getErasable(Erasables.Eraser);

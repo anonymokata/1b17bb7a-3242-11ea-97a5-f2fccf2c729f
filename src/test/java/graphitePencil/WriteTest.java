@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import paper.Paper;
+import writer.Writer;
+
 /**
  * @author Adrian Hernandez
  *

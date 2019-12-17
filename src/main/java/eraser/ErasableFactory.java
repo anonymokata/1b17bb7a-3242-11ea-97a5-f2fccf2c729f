@@ -1,7 +1,5 @@
 package eraser;
 
-import graphitePencil.Erasables;
-
 public class ErasableFactory {
 	
 	static public Erasable getErasable(Erasables type) {

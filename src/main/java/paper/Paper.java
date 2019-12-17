@@ -1,4 +1,4 @@
-package graphitePencil;
+package paper;
 
 /**
  * @author Adrian Hernandez

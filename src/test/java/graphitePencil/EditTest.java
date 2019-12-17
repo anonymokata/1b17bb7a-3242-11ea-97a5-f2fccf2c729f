@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import editor.Editor;
+import paper.Paper;
+
 public class EditTest {
 
 	/*********************** Edit Tests ***********************/
