@@ -85,6 +85,9 @@ public abstract class AbstractPencil {
 		}
 	}
 	
+	
+	// These methods process points and strings for the system  in
+	// major events such as collisions, writing, and erasing
 	abstract void characterPointWriting(StringBuilder degradation, char writeChar);
 	abstract void collisionPointWriting(StringBuilder degradation);
 	abstract int characterPointErasing(String text);
