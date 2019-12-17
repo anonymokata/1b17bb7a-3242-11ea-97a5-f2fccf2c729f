@@ -394,6 +394,7 @@ public class PencilTest {
 		assertEquals(expected,paperText);
 	}
 	
+	
 	/*****************************
 	 *     ERASER UNIT TESTS     *
 	 *****************************/
@@ -402,6 +403,7 @@ public class PencilTest {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper("The The The The The");
 		
+		// Erase last 'The'
 		String erasure = "The";
 		pencil.eraseFromPaper(paper, erasure);
 		String expected =  "The The The The    ";
@@ -414,16 +416,29 @@ public class PencilTest {
 		Pencil pencil = new Pencil(10,10,10);
 		Paper paper = new Paper("a\na");
 		
+		// Erases only the a's , preserving whitespace
 		String erasure = "a\na";
 		pencil.eraseFromPaper(paper, erasure);
 		String expected =  " \n ";
 		String paperText = paper.getText();
-		System.out.println(paperText);
 		assertEquals(expected,paperText);
 	}
 	
+	/*********************** Point Degradation Tests ***********************/
+	
+	
+	
+	/*********************** Erase Degradation Tests ***********************/
 	@Test
 	public void whenOutOfErasePointsPencilShouldNotEraseFromPaper() {
+		Pencil pencil = new Pencil(10,5,10);
+		Paper paper = new Paper("abcdefghij");
 		
+		// Should not completely erase string
+		String erasure = "abcdefghij";
+		pencil.eraseFromPaper(paper, erasure);
+		String expected =  "abcde     ";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 }
