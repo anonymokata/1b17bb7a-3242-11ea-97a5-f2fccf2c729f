@@ -26,7 +26,7 @@ public class Editor {
 					} else if(!Character.isWhitespace(paperChar)) {
 						paperText.setCharAt(startIndex + i, '@');
 					} else {
-						// currentChar is a special whitespace
+						// paperChar is a special whitespace
 						paperText.setCharAt(startIndex + i, paperChar);
 					}
 				}

@@ -49,16 +49,26 @@ public class Pencil extends AbstractPencil {
 	}
 	
 	int characterPointErasing(String text) {
+		int spaceAdjusted = 0;
+		
 		// Get number of non white-space characters
 		int rightPortion = text.replaceAll("\\s+", "").length();
-		
 		if(erasePoints >= rightPortion) {
 			erasePoints -= rightPortion;
 		} else {
 			rightPortion = erasePoints;
 			erasePoints = 0;
 		}
-
-		return rightPortion;
+		
+		// find number of characters from including whitespace
+		// while considering how many non-white space chars we can erase
+		for(int i = text.length() - 1; i >= 0 && rightPortion > 0; i++) {
+			if(!Character.isWhitespace(text.charAt(i))){
+				rightPortion--;
+			}
+			spaceAdjusted++;
+		}
+		
+		return spaceAdjusted;
 	}
 }

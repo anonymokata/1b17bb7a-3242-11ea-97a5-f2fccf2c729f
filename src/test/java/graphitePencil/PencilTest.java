@@ -217,17 +217,43 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldCollideIfPaperAndReplacementAreNonWhiteSpaceCharacters() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("abcdef!J,/");
 		
+		// Test with random characters
+		pencil.editOnPaper(paper, "/;/FGcsag$",0);
+		String expected = "@@@@@@@@@@";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	@Test
-	public void pencilNotEditPaperIfReplacementStringIsAWhiteSpaceCharacter() {
+	public void pencilShouldNotEditPaperIfReplacementStringIsAWhiteSpaceCharacter() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("abcdef");
 		
+		// Test with blank spaces and random characters
+		pencil.editOnPaper(paper, "/;/ \t\n",0);
+		String expected = "@@@def";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	public void pencilShouldWriteAllOverflowTextAsIsToPaper() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("a");
 		
+		// Test with random
+		pencil.editOnPaper(paper, "cd \n\tclowns",0);
+		String expected = "@d \\n\\tclowns";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
+	
+	// Should we account for this situation?
+	//public void pencilShouldNotCollideIfReplacementStringAndPaperAreSameCharacter(){
+	//
+	//}
 	
 	/*********************** Point Degradation Tests ***********************/
 	@Test
@@ -373,12 +399,27 @@ public class PencilTest {
 	 *****************************/
 	@Test
 	public void pencilShouldEraseTextFromPaper() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("The The The The The");
 		
+		String erasure = "The";
+		pencil.eraseFromPaper(paper, erasure);
+		String expected =  "The The The The    ";
+		String paperText = paper.getText();
+		assertEquals(expected,paperText);
 	}
 	
 	@Test
 	public void pencilShouldNotEraseSpecialWhiteCharacters() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("a\na");
 		
+		String erasure = "a\na";
+		pencil.eraseFromPaper(paper, erasure);
+		String expected =  " \n ";
+		String paperText = paper.getText();
+		System.out.println(paperText);
+		assertEquals(expected,paperText);
 	}
 	
 	@Test

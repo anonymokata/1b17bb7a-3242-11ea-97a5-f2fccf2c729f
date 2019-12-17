@@ -8,11 +8,11 @@ package paper;
 public class Paper {
 	private String text;
 	
-	Paper(){
+	public Paper(){
 		this.setText("");
 	}
 	
-	Paper(String text){
+	public Paper(String text){
 		this.setText(text);
 	}
 
