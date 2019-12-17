@@ -4,6 +4,7 @@ package graphitePencil;
  * @author Adrian Hernandez
  */
 public class Pencil extends AbstractPencil {
+	private Erasable eraser = ErasableFactory.getErasable(Erasables.Eraser);
 	
 	public Pencil(int writePoints, int erasePoints, int pencilLength){
 		super(writePoints,erasePoints,pencilLength);
@@ -52,12 +53,8 @@ public class Pencil extends AbstractPencil {
 	}
 	
 	public void eraseFromPaper(Paper paper, String eraseText) {
-		StringBuilder degradationEraseText = new StringBuilder();
-		
-		// Create a "degrading" version of eraseText while tracking erasePoints
-		// NOTE: Erasing is done from right to left
-
-		// Use "degraded" writeText on paper
+		int erasableCharacters = characterPointErasing(eraseText);
+		eraser.eraseFromPaper(paper, eraseText, erasableCharacters);
 	}
 	
 	private void characterPointWriting(StringBuilder degradation, char writeChar) {
@@ -96,7 +93,17 @@ public class Pencil extends AbstractPencil {
 		}
 	}
 	
-	private void characterPointErasing(StringBuilder text) {
+	private int characterPointErasing(String text) {
+		// Get number of non white-space characters
+		int rightPortion = text.replaceAll("\\s+", "").length();
 		
+		if(erasePoints >= rightPortion) {
+			erasePoints -= rightPortion;
+		} else {
+			rightPortion = erasePoints;
+			erasePoints = 0;
+		}
+
+		return rightPortion;
 	}
 }

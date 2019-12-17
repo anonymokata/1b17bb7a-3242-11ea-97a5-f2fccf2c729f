@@ -5,7 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class EraseTest {
-
+	Erasable Eraser = ErasableFactory.getErasable(Erasables.Eraser);
+	
 	/*********************** Erase Tests ***********************/
 	@Test
 	public void eraserShouldEraseTextFromPaper() {
@@ -75,25 +76,6 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaper() {
-		// Use WSEraser to erase special whitespace characters
-		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
-		Paper story = new Paper(text);
-		
-		// Removing with a string containing a new line
-		Eraser.eraseFromPaper(story, "\n#myfirst");
-		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n        ";
-		String paperText = story.getText();
-		assertEquals("Failed for removing new line",expected,paperText);
-		
-		// Removing with a string containing a tab
-		Eraser.eraseFromPaper(story, "\tI");
-		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n        ";
-		paperText = story.getText();
-		assertEquals("Failed for removing tab",expected,paperText);
-	}
-	
-	@Test
 	public void eraserShouldEraseFromMultiplePapers() {
 		// Setup papers
 		String text1 = "I am a biography.";
@@ -124,6 +106,25 @@ public class EraseTest {
 		assertEquals(expected,paperText);
 	}
 	
+	@Test
+	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaper() {
+		// Use WSEraser to erase special whitespace characters
+		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
+		Paper story = new Paper(text);
+		
+		// Removing with a string containing a new line
+		Eraser.eraseFromPaper(story, "\n#myfirst");
+		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n        ";
+		String paperText = story.getText();
+		assertEquals("Failed for removing new line",expected,paperText);
+		
+		// Removing with a string containing a tab
+		Eraser.eraseFromPaper(story, "\tI");
+		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n        ";
+		paperText = story.getText();
+		assertEquals("Failed for removing tab",expected,paperText);
+	}
+		
 	/*********************** Erase Detection Tests ***********************/
 	@Test
 	public void eraserShouldReturnFalseIfNoCharactersWereErased() {
