@@ -246,22 +246,67 @@ public class PencilTest {
 	
 	@Test
 	public void whenEditingPencilShouldLoseTwoWritePointsPerUpperCaseLetter() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("    ");
 		
+		// Test with 1 uppercase character
+		pencil.editOnPaper(paper, "A",0);
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(8,availablePoints);
+		
+		// Test with 3 uppercase characters
+		pencil.editOnPaper(paper, "BCD",1);
+		availablePoints = pencil.getWritePoints();
+		assertEquals(2,availablePoints);
 	}
 	
 	@Test
 	public void whenEditingPencilShouldNotLoseWritePointsForBlankSpace() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("    ");
 		
+		// Test with 1 blank space character
+		pencil.editOnPaper(paper, " ",0);
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(10,availablePoints);
+		
+		// Test with 3 blank space characters
+		pencil.editOnPaper(paper, "   ",1);
+		availablePoints = pencil.getWritePoints();
+		assertEquals(10,availablePoints);
 	}
 	
 	@Test
 	public void whenEditingPencilShouldLoseOneWritePointPerCollision() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("aaaaaa");
 		
+		// Test with 1  character
+		pencil.editOnPaper(paper, "b",0);
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(9,availablePoints);
+		
+		// Test with random characters
+		pencil.editOnPaper(paper, "cDE $!",1);
+		availablePoints = pencil.getWritePoints();
+		assertEquals(4,availablePoints);
 	}
 	
 	@Test
 	public void whenOutOfWritePointsPencilShouldNotLoseAnymorePointsWhileEditing() {
 		// IE should never have negative write points
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("       ");
+		
+		// Get down to zero points, don't sharpen
+		pencil.editOnPaper(paper, "AAAAA",0);
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(0,availablePoints);
+		
+		// Test with 3 lowercase characters
+		pencil.editOnPaper(paper, "cccccc",1);
+		availablePoints = pencil.getWritePoints();
+		assertEquals(0,availablePoints);
 	}
 	
 	@Test
