@@ -6,8 +6,6 @@ public class PencilableFactory {
 			int erasePoints, int pencilLength) {
         AbstractPencil pencil = null;
         switch (type) {
-        	case KataPencil:
-        		pencil = new KataPencil(writePoints,erasePoints,pencilLength);
 	        case StrictPencil:
 	            pencil = new StrictPencil(writePoints,erasePoints,pencilLength);
 	            break;
