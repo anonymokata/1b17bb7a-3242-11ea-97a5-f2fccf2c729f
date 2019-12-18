@@ -3,6 +3,7 @@ package editor;
 import paper.Paperable;
 
 public class Editor implements Editable {
+	@Override
 	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder paperText = new StringBuilder(paper.getText());
 		int replacementLength = replacementText.length();

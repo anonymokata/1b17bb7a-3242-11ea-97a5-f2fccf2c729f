@@ -7,9 +7,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 
-import eraser.Erasable;
-import eraser.ErasableFactory;
-import eraser.Erasables;
 import paper.Paper;
 import writer.Writable;
 import writer.WritableFactory;
@@ -39,7 +36,7 @@ public class WritableTest {
     public static Object[][] data() {
         return new Object[][] {
         	{"Writer", WritableFactory.getWritable(Writables.Writer), true},
-        	{"StrictWriter", WritableFactory.getWritable(Writables.StrictWriter), false }
+        	{"StrictWriter", WritableFactory.getWritable(Writables.StrictWriter), false}
         };
     }
 	
@@ -147,10 +144,12 @@ public class WritableTest {
 	@Test
 	public void writerShouldProcessSpecialWhiteSpaceCorrectly() {
 		String text = "I love\nlove love\nyou";
-		Paper story = new Paper(text);
+		Paper story = new Paper();
+		Writer.writeToPaper(story, text);
 		
 		String expected = "I love\nlove love\nyou";
 		String paperText = story.getText();
+		System.out.println(paperText);
 		boolean whiteSpaceFriendly = paperText.contentEquals(expected);
 		assertEquals(whiteSpaceFriendlyWriter,whiteSpaceFriendly);
 	}

@@ -4,6 +4,7 @@ import paper.Paperable;
 
 public class Eraser extends AbstractEraser {
 
+	@Override
 	public boolean eraseFromPaper(Paperable paper, int startIndex, int endIndex) {
 		// Erase by replacing with spaces using indexes [Inclusive,Exclusive)
 		// Existing white space is preserved

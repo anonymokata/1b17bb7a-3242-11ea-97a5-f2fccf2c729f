@@ -8,6 +8,7 @@ public class WritableFactory {
         switch (type) {
         	case StrictWriter:
         		writer = new StrictWriter();
+        		break;
 	        case Writer:
 	            writer = new Writer();
 	            break;
