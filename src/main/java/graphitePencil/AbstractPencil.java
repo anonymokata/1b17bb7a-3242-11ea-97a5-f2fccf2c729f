@@ -3,7 +3,7 @@ package graphitePencil;
 import editor.Editable;
 import editor.Editor;
 import eraser.Erasable;
-import paper.Paper;
+import paper.Paperable;
 import writer.Writable;
 import writer.Writer;
 
@@ -24,7 +24,7 @@ public abstract class AbstractPencil {
 		this.defaultWritePoints = writePoints;
 	}
 	
-	public void writeToPaper(Paper paper, String writeText) {
+	public void writeToPaper(Paperable paper, String writeText) {
 		StringBuilder degradationWriteText = new StringBuilder();
 		
 		// Create a "degrading" version of writeText while tracking writePoints
@@ -35,10 +35,10 @@ public abstract class AbstractPencil {
 		
 		// Use "degraded" writeText on paper
 		String degradedWriteText = degradationWriteText.toString();
-		Writer.writeToPaper(paper, degradedWriteText);
+		writer.writeToPaper(paper, degradedWriteText);
 	}
 	
-	public void editOnPaper(Paper paper, String replacementText, int startIndex) {
+	public void editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder degradationReplacementText = new StringBuilder();
 		String paperText = paper.getText();
 		int paperLength = paperText.length();
@@ -63,10 +63,10 @@ public abstract class AbstractPencil {
 		}
 		
 		String degradedReplacementText = degradationReplacementText.toString();
-		Editor.editOnPaper(paper, degradedReplacementText, startIndex);
+		editor.editOnPaper(paper, degradedReplacementText, startIndex);
 	}
 	
-	public void eraseFromPaper(Paper paper, String eraseText) {
+	public void eraseFromPaper(Paperable paper, String eraseText) {
 		int erasableCharacters = characterPointErasing(eraseText);
 		eraser.eraseFromPaper(paper, eraseText, erasableCharacters);
 	}

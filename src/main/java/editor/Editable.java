@@ -1,7 +1,7 @@
 package editor;
 
-import paper.Paper;
+import paper.Paperable;
 
 public interface Editable {
-	boolean editOnPaper(Paper paper, String replacementText, int startIndex);
+	boolean editOnPaper(Paperable paper, String replacementText, int startIndex);
 }

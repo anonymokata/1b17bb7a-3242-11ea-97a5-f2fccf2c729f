@@ -2,6 +2,8 @@ package graphitePencil;
 
 import eraser.ErasableFactory;
 import eraser.Erasables;
+import writer.WritableFactory;
+import writer.Writables;
 
 /**
  * @author Adrian Hernandez
@@ -9,6 +11,7 @@ import eraser.Erasables;
 public class Pencil extends AbstractPencil {
 	public Pencil(int writePoints, int erasePoints, int pencilLength){
 		super(writePoints,erasePoints,pencilLength);
+		writer = WritableFactory.getErasable(Writables.Writer);
 		eraser = ErasableFactory.getErasable(Erasables.Eraser);
 	}
 	

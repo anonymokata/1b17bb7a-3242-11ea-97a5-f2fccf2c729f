@@ -1,7 +1,7 @@
 package writer;
 
-import paper.Paper;
+import paper.Paperable;
 
 public interface Writable {
-	public void writeToPaper(Paper paper, String newText);
+	public void writeToPaper(Paperable paper, String newText);
 }

@@ -2,6 +2,7 @@ package eraser;
 
 public class ErasableFactory {
 	
+	// Return an instance of desired object
 	static public Erasable getErasable(Erasables type) {
         Erasable eraser = null;
         switch (type) {

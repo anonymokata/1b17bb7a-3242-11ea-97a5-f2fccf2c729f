@@ -1,9 +1,9 @@
 package eraser;
 
-import paper.Paper;
+import paper.Paperable;
 
 public abstract class Erasable {
-	public boolean eraseFromPaper(Paper paper, String desiredText) {
+	public boolean eraseFromPaper(Paperable paper, String desiredText) {
 		// Find last index, returning false if desiredText not found
 		int erasureStart = paper.getText().lastIndexOf(desiredText);
 		if (erasureStart == -1) {return false;}
@@ -12,7 +12,7 @@ public abstract class Erasable {
 		return eraseFromPaper(paper,erasureStart,erasureEnd);
 	}
 	
-	public boolean eraseFromPaper(Paper paper, String desiredText, int portion) {
+	public boolean eraseFromPaper(Paperable paper, String desiredText, int portion) {
 		// Find last index, returning false if desiredText not found
 		int erasureStart = paper.getText().lastIndexOf(desiredText);
 		if (erasureStart == -1) {return false;}
@@ -25,5 +25,5 @@ public abstract class Erasable {
 		return eraseFromPaper(paper,erasureStart,erasureEnd);
 	}
 	
-	abstract public boolean eraseFromPaper(Paper paper, int startIndex, int endIndex);
+	abstract public boolean eraseFromPaper(Paperable paper, int startIndex, int endIndex);
 }

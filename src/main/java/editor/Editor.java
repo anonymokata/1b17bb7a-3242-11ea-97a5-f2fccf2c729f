@@ -1,9 +1,9 @@
 package editor;
 
-import paper.Paper;
+import paper.Paperable;
 
-public class Editor {
-	public static boolean editOnPaper(Paper paper, String replacementText, int startIndex) {
+public class Editor implements Editable {
+	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder paperText = new StringBuilder(paper.getText());
 		int replacementLength = replacementText.length();
 		

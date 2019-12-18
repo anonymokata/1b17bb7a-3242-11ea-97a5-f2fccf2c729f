@@ -5,7 +5,7 @@ package paper;
  * A paper's text should only be set and retreived. No fancy function
  * should exist. That should be kept with the Pencil's utilities
  */
-public class Paper {
+public class Paper implements Paperable {
 	private String text;
 	
 	public Paper(){
@@ -19,6 +19,7 @@ public class Paper {
 	/**
 	 * @return the text
 	 */
+	@Override
 	public String getText() {
 		return text;
 	}
@@ -26,6 +27,7 @@ public class Paper {
 	/**
 	 * @param text the text to set
 	 */
+	@Override
 	public void setText(String text) {
 		this.text = text;
 	}	

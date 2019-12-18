@@ -1,10 +1,10 @@
 package eraser;
 
-import paper.Paper;
+import paper.Paperable;
 
 public class Eraser extends Erasable {
 
-	public boolean eraseFromPaper(Paper paper, int startIndex, int endIndex) {
+	public boolean eraseFromPaper(Paperable paper, int startIndex, int endIndex) {
 		// Erase by replacing with spaces using indexes [Inclusive,Exclusive)
 		// Existing white space is preserved
 		StringBuilder eraseText = new StringBuilder(paper.getText());

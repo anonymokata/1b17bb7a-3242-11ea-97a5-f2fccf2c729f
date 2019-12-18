@@ -425,8 +425,15 @@ public class PencilTest {
 	}
 	
 	/*********************** Point Degradation Tests ***********************/
+	@Test
+	public void pencilShouldLoseOneErasePointPerNonWhiteSpaceCharacters(){
+		
+	}
 	
-	
+	@Test
+	public void pencilShouldNotLosePointsForAnyMatchingWhiteSpaceCharacters() {
+		
+	}
 	
 	/*********************** Erase Degradation Tests ***********************/
 	@Test

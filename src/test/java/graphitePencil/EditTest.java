@@ -4,11 +4,17 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import editor.Editable;
+import editor.EditableFactory;
+import editor.Editables;
 import editor.Editor;
+import eraser.Erasable;
+import eraser.ErasableFactory;
+import eraser.Erasables;
 import paper.Paper;
 
 public class EditTest {
-
+	Editable Editor = EditableFactory.getEditable(Editables.Editor);
 	/*********************** Edit Tests ***********************/
 	@Test
 	public void editorShouldEditBlankSpaceOnPaperWithReplacementString() {

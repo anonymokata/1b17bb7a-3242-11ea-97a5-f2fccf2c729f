@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import paper.Paper;
+import writer.Writable;
+import writer.WritableFactory;
+import writer.Writables;
 import writer.Writer;
 
 /**
@@ -12,7 +15,8 @@ import writer.Writer;
  *
  */
 public class WriteTest {
-
+	Writable Writer = WritableFactory.getWritable(Writables.Writer);
+	
 	/*********************** Write Tests ***********************/
 	@Test
 	public void writerShouldWriteToBlankPaper() {
