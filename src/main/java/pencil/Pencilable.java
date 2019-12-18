@@ -1,12 +1,11 @@
 package pencil;
 
-import editor.Editable;
-import editor.Editor;
+
 import eraser.AbstractEraser;
 import eraser.Erasable;
-import paper.Paperable;
+import editor.Editable;
 import writer.Writable;
-import writer.Writer;
+import paper.Paperable;
 
 public abstract class Pencilable
 	implements Writable, Editable, Erasable {
