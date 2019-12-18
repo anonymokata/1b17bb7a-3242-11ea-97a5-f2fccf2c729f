@@ -36,8 +36,9 @@ public class ErasableTest {
         };
     }
 	
-	// This helps identify which class of eraser was used
-	// this is only used for reference in the name = {0} 
+	// This helps identify which class of eraser was used in a clean way.
+	// This is only used for a reference in the name = {0}
+	// because name = {1} gives me excess (nasty looking) information 
 	@Parameter(0)
 	public String forTestLabelingOnly;
 	// This is the eraser under test.
