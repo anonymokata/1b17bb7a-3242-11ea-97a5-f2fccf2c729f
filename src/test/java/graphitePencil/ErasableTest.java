@@ -12,8 +12,22 @@ import eraser.ErasableFactory;
 import eraser.Erasables;
 import paper.Paper;
 
+// Tells runner to run tests with different data sets
 @RunWith(Parameterized.class)
 public class ErasableTest {
+	// public static Object[][] data() {}
+	// This sets the "database" that the runner will pull from
+	// The column types of this "database" are your parameters
+	// Runner will 
+	//    1. Read a "row" of data (the inner array) 
+	//    2. Assign parameters (column types) as specified below
+	//    3. Run all unit test with "row" of data
+	//    4. Repeat 1-3 until all "rows" have been read
+	
+	// name = "{1} : myString {3}" 
+	// Sets a label to be attached to the unit tests where
+	// {#} is the toString() of data in column # in current row
+	
 	@Parameterized.Parameters(name = "{0}")
     public static Object[][] data() {
         return new Object[][] {
@@ -32,6 +46,7 @@ public class ErasableTest {
 	// Used for tests on diverging functionalities of eraser
 	@Parameter(2)
 	public boolean whiteSpaceFriendlyEraser;
+	
 	
 	/*********************** Erase Tests ***********************/
 	@Test
@@ -152,6 +167,7 @@ public class ErasableTest {
 		whiteSpaceFriendly = paperText.equals(expected);
 		assertEquals("Failed for removing new line",whiteSpaceFriendlyEraser,whiteSpaceFriendly);
 	}
+	
 		
 	/*********************** Erase Detection Tests ***********************/
 	@Test
