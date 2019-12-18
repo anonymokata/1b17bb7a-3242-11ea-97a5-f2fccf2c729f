@@ -14,8 +14,6 @@ import paper.Paper;
 
 @RunWith(Parameterized.class)
 public class ErasableTest {
-
-
 	@Parameterized.Parameters(name = "{0}")
     public static Object[][] data() {
         return new Object[][] {
@@ -24,11 +22,11 @@ public class ErasableTest {
         };
     }
 	
-	@Parameter(value = 0)
+	@Parameter(0)
 	public String forTestLabelingOnly;
-	@Parameter(value = 1)
+	@Parameter(1)
 	public Erasable Eraser;
-	@Parameter(value = 2)
+	@Parameter(2)
 	public boolean whiteSpaceFriendlyEraser;
 	
 	/*********************** Erase Tests ***********************/
