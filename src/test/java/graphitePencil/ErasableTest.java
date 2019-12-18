@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
 
 import eraser.Erasable;
 import eraser.ErasableFactory;
@@ -12,20 +13,23 @@ import eraser.Erasables;
 import paper.Paper;
 
 @RunWith(Parameterized.class)
-public class EraseTest {
-	Erasable Eraser;
+public class ErasableTest {
 
-	@Parameterized.Parameters(name = "{1}")
+
+	@Parameterized.Parameters(name = "{0}")
     public static Object[][] data() {
         return new Object[][] {
-        	{ErasableFactory.getErasable(Erasables.Eraser), "Eraser"},
-        	{ErasableFactory.getErasable(Erasables.StrictEraser), "StrictEraser" }
+        	{"Eraser", ErasableFactory.getErasable(Erasables.Eraser), true},
+        	{"StrictEraser", ErasableFactory.getErasable(Erasables.StrictEraser), false }
         };
     }
 	
-	public EraseTest(Erasable e, String label){
-		Eraser = e;
-	}
+	@Parameter(value = 0)
+	public String forTestLabelingOnly;
+	@Parameter(value = 1)
+	public Erasable Eraser;
+	@Parameter(value = 2)
+	public boolean whiteSpaceFriendlyEraser;
 	
 	/*********************** Erase Tests ***********************/
 	@Test
@@ -127,7 +131,7 @@ public class EraseTest {
 	}
 	
 	@Test
-	public void eraserShouldNotEraseSpecialWhiteCharactersFromPaper() {
+	public void eraserShouldProcessSpecialWhiteCharactersFromPaperCorrectly() {
 		// Use WSEraser to erase special whitespace characters
 		String text = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n#myfirst";
 		Paper story = new Paper(text);
@@ -136,13 +140,15 @@ public class EraseTest {
 		Eraser.eraseFromPaper(story, "\n#myfirst");
 		String expected = "She told me that she loved me!! :)\n\tI said I alway$ loved her!\n        ";
 		String paperText = story.getText();
-		assertEquals("Failed for removing new line",expected,paperText);
+		boolean whiteSpaceFriendly = paperText.equals(expected);
+		assertEquals("Failed for removing new line",whiteSpaceFriendlyEraser,whiteSpaceFriendly);
 		
 		// Removing with a string containing a tab
 		Eraser.eraseFromPaper(story, "\tI");
 		expected = "She told me that she loved me!! :)\n\t  said I alway$ loved her!\n        ";
 		paperText = story.getText();
-		assertEquals("Failed for removing tab",expected,paperText);
+		whiteSpaceFriendly = paperText.equals(expected);
+		assertEquals("Failed for removing new line",whiteSpaceFriendlyEraser,whiteSpaceFriendly);
 	}
 		
 	/*********************** Erase Detection Tests ***********************/
@@ -155,7 +161,9 @@ public class EraseTest {
 		boolean erasedPhrase = Eraser.eraseFromPaper(story, "boogah");
 		boolean erasedWhite = Eraser.eraseFromPaper(story, " ");
 
-		assertFalse(erasedNewLine);
+		// erasedNewLine would be true for StrictEraser since it replaces
+		// everything that is not a blank space with a blank space
+		assertEquals(whiteSpaceFriendlyEraser,!erasedNewLine);
 		assertFalse(erasedPhrase);
 		assertFalse(erasedWhite);
 	}
