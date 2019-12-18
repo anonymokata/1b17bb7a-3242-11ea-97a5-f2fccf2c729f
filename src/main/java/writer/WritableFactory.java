@@ -6,6 +6,8 @@ public class WritableFactory {
 	static public Writable getWritable(Writables type) {
         Writable writer = null;
         switch (type) {
+        	case StrictWriter:
+        		writer = new StrictWriter();
 	        case Writer:
 	            writer = new Writer();
 	            break;

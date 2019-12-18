@@ -14,7 +14,7 @@ import writer.Writables;
  *
  */
 public class WriteTest {
-	Writable Writer = WritableFactory.getWritable(Writables.Writer);
+	Writable Writer = WritableFactory.getWritable(Writables.StrictWriter);
 	
 	/*********************** Write Tests ***********************/
 	@Test
