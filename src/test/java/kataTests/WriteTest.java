@@ -8,7 +8,6 @@ import paper.Paper;
 import writer.Writable;
 import writer.WritableFactory;
 import writer.Writables;
-import writer.Writer;
 
 /**
  * @author Adrian Hernandez
