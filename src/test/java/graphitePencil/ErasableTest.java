@@ -22,10 +22,14 @@ public class ErasableTest {
         };
     }
 	
+	// This helps identify which class of eraser was used
+	// this is only used for reference in the name = {0} 
 	@Parameter(0)
 	public String forTestLabelingOnly;
+	// This is the eraser under test.
 	@Parameter(1)
 	public Erasable Eraser;
+	// Used for tests on diverging functionalities of eraser
 	@Parameter(2)
 	public boolean whiteSpaceFriendlyEraser;
 	
