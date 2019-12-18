@@ -2,18 +2,20 @@ package graphitePencil;
 
 import editor.Editable;
 import editor.Editor;
+import eraser.AbstractEraser;
 import eraser.Erasable;
 import paper.Paperable;
 import writer.Writable;
 import writer.Writer;
 
-public abstract class AbstractPencil {
+public abstract class AbstractPencil
+	implements Writable, Editable, Erasable {
 	int writePoints;
 	int erasePoints;
 	int pencilLength;
 	final int defaultWritePoints;
 	
-	Erasable eraser;
+	AbstractEraser eraser;
 	Editable editor;
 	Writable writer;
 	
@@ -38,7 +40,7 @@ public abstract class AbstractPencil {
 		writer.writeToPaper(paper, degradedWriteText);
 	}
 	
-	public void editOnPaper(Paperable paper, String replacementText, int startIndex) {
+	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder degradationReplacementText = new StringBuilder();
 		String paperText = paper.getText();
 		int paperLength = paperText.length();
@@ -63,12 +65,12 @@ public abstract class AbstractPencil {
 		}
 		
 		String degradedReplacementText = degradationReplacementText.toString();
-		editor.editOnPaper(paper, degradedReplacementText, startIndex);
+		return editor.editOnPaper(paper, degradedReplacementText, startIndex);
 	}
 	
-	public void eraseFromPaper(Paperable paper, String eraseText) {
+	public boolean eraseFromPaper(Paperable paper, String eraseText) {
 		int erasableCharacters = characterPointErasing(eraseText);
-		eraser.eraseFromPaper(paper, eraseText, erasableCharacters);
+		return eraser.eraseFromPaper(paper, eraseText, erasableCharacters);
 	}
 	
 	public boolean sharpen() {

@@ -1,5 +1,8 @@
 package graphitePencil;
 
+import editor.EditableFactory;
+import editor.Editables;
+import eraser.AbstractEraser;
 import eraser.ErasableFactory;
 import eraser.Erasables;
 import writer.WritableFactory;
@@ -11,8 +14,9 @@ import writer.Writables;
 public class Pencil extends AbstractPencil {
 	public Pencil(int writePoints, int erasePoints, int pencilLength){
 		super(writePoints,erasePoints,pencilLength);
-		writer = WritableFactory.getErasable(Writables.Writer);
-		eraser = ErasableFactory.getErasable(Erasables.Eraser);
+		writer = WritableFactory.getWritable(Writables.Writer);
+		eraser = (AbstractEraser) ErasableFactory.getErasable(Erasables.Eraser);
+		editor = EditableFactory.getEditable(Editables.Editor);
 	}
 	
 	void characterPointWriting(StringBuilder degradation, char writeChar) {

@@ -2,7 +2,7 @@ package eraser;
 
 import paper.Paperable;
 
-public class StrictEraser extends Erasable {
+public class StrictEraser extends AbstractEraser {
 	
 	@Override
 	public boolean eraseFromPaper(Paperable paper, int startIndex, int endIndex) {

@@ -2,7 +2,7 @@ package eraser;
 
 import paper.Paperable;
 
-public class Eraser extends Erasable {
+public class Eraser extends AbstractEraser {
 
 	public boolean eraseFromPaper(Paperable paper, int startIndex, int endIndex) {
 		// Erase by replacing with spaces using indexes [Inclusive,Exclusive)
