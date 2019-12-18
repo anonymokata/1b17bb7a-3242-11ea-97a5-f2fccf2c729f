@@ -152,6 +152,6 @@ public class WritableTest {
 		String expected = "I love\nlove love\nyou";
 		String paperText = story.getText();
 		boolean whiteSpaceFriendly = paperText.contentEquals(expected);
-		assertEquals(whiteSpaceFriendlyWriter,whitespaceFriendly);
+		assertEquals(whiteSpaceFriendlyWriter,whiteSpaceFriendly);
 	}
 }
