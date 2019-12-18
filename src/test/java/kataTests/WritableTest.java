@@ -3,7 +3,13 @@ package kataTests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
 
+import eraser.Erasable;
+import eraser.ErasableFactory;
+import eraser.Erasables;
 import paper.Paper;
 import writer.Writable;
 import writer.WritableFactory;
@@ -13,8 +19,42 @@ import writer.Writables;
  * @author Adrian Hernandez
  *
  */
+//Tells runner to run tests with different data sets
+@RunWith(Parameterized.class)
 public class WritableTest {
-	Writable Writer = WritableFactory.getWritable(Writables.StrictWriter);
+	// public static Object[][] data() {}
+	// This sets the "database" that the runner will pull from
+	// The column types of this "database" are your parameters
+	// Runner will 
+	//    1. Read a "row" of data (the inner array) 
+	//    2. Assign parameters (column types) as specified below
+	//    3. Run all unit test with "row" of data
+	//    4. Repeat 1-3 until all "rows" have been read
+	
+	// name = "{1} : myString {3}" 
+	// Sets a label to be attached to the unit tests where
+	// {#} is the toString() of data in column # in current row
+	
+	@Parameterized.Parameters(name = "{0}")
+    public static Object[][] data() {
+        return new Object[][] {
+        	{"Writer", WritableFactory.getWritable(Writables.Writer), true},
+        	{"StrictWriter", WritableFactory.getWritable(Writables.StrictWriter), false }
+        };
+    }
+	
+	
+	// This helps identify which class of eraser was used in a clean way.
+	// This is only used for a reference in the name = {0}
+	// because name = {1} gives me excess (nasty looking) information 
+	@Parameter(0)
+	public String forTestLabelingOnly;
+	// This is the generic object under test.
+	@Parameter(1)
+	public Writable Writer;
+	// Used for testing of diverging functionalities 
+	@Parameter(2)
+	public boolean whiteSpaceFriendlyWriter;
 	
 	/*********************** Write Tests ***********************/
 	@Test
@@ -102,5 +142,16 @@ public class WritableTest {
 		String paperText = story.getText();
 		
 		assertEquals(expected,paperText);
+	}
+	
+	@Test
+	public void writerShouldProcessSpecialWhiteSpaceCorrectly() {
+		String text = "I love\nlove love\nyou";
+		Paper story = new Paper(text);
+		
+		String expected = "I love\nlove love\nyou";
+		String paperText = story.getText();
+		boolean whiteSpaceFriendly = paperText.contentEquals(expected);
+		assertEquals(whiteSpaceFriendlyWriter,whitespaceFriendly);
 	}
 }

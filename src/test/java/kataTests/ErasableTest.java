@@ -41,10 +41,10 @@ public class ErasableTest {
 	// because name = {1} gives me excess (nasty looking) information 
 	@Parameter(0)
 	public String forTestLabelingOnly;
-	// This is the eraser under test.
+	// This is the generic object under test.
 	@Parameter(1)
 	public Erasable Eraser;
-	// Used for tests on diverging functionalities of eraser
+	// Used for testing of diverging functionalities 
 	@Parameter(2)
 	public boolean whiteSpaceFriendlyEraser;
 	
