@@ -3,14 +3,29 @@ package graphitePencil;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import eraser.Erasable;
 import eraser.ErasableFactory;
 import eraser.Erasables;
 import paper.Paper;
 
+@RunWith(Parameterized.class)
 public class EraseTest {
-	Erasable Eraser = ErasableFactory.getErasable(Erasables.Eraser);
+	Erasable Eraser;
+
+	@Parameterized.Parameters(name = "{1}")
+    public static Object[][] data() {
+        return new Object[][] {
+        	{ErasableFactory.getErasable(Erasables.Eraser), "Eraser"},
+        	{ErasableFactory.getErasable(Erasables.StrictEraser), "StrictEraser" }
+        };
+    }
+	
+	public EraseTest(Erasable e, String label){
+		Eraser = e;
+	}
 	
 	/*********************** Erase Tests ***********************/
 	@Test

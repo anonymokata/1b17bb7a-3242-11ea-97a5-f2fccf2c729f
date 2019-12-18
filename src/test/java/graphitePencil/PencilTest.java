@@ -427,12 +427,26 @@ public class PencilTest {
 	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void pencilShouldLoseOneErasePointPerNonWhiteSpaceCharacters(){
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("a\na");
 		
+		// Erases only the a's , preserving whitespace
+		String erasure = "a\na";
+		pencil.eraseFromPaper(paper, erasure);
+		int availablePoints = pencil.getErasePoints();
+		assertEquals(8,availablePoints);
 	}
 	
 	@Test
 	public void pencilShouldNotLosePointsForAnyMatchingWhiteSpaceCharacters() {
+		Pencil pencil = new Pencil(10,10,10);
+		Paper paper = new Paper("\n\n\nsssss\tpppp ");
 		
+		// Erases only the a's , preserving whitespace
+		String erasure = "s\tpppp ";
+		pencil.eraseFromPaper(paper, erasure);
+		int availablePoints = pencil.getErasePoints();
+		assertEquals(5,availablePoints);
 	}
 	
 	/*********************** Erase Degradation Tests ***********************/
