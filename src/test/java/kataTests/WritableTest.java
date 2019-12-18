@@ -13,7 +13,7 @@ import writer.Writables;
  * @author Adrian Hernandez
  *
  */
-public class WriteTest {
+public class WritableTest {
 	Writable Writer = WritableFactory.getWritable(Writables.StrictWriter);
 	
 	/*********************** Write Tests ***********************/
