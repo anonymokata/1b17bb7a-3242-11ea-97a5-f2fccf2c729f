@@ -1,24 +1,29 @@
 package pencil;
 
-
-import eraser.AbstractEraser;
-import eraser.Erasable;
+import eraser.AbstractErasable;
 import editor.Editable;
 import writer.Writable;
 import paper.Paperable;
 
-public abstract class Pencilable
-	implements Writable, Editable, Erasable {
-	int writePoints;
-	int erasePoints;
-	int pencilLength;
-	final int defaultWritePoints;
+// I believe this should not be public because it only provides customization
+// for different implementations, but more importantly, it does not break from
+// or add anything from Pencilable in the public scope.
+abstract class AbstractPencil
+	implements Pencilable {
 	
-	AbstractEraser eraser;
+	// it could be beneficial to to have access to this in subclasses
+	protected int writePoints;
+	protected int erasePoints;
+	protected int pencilLength;
+	protected final int defaultWritePoints;
+	
+	// These are for modular customization of OUR pencil logic.
+	// since this is for our logic simplification, keep it in the package
+	AbstractErasable eraser;
 	Editable editor;
 	Writable writer;
 	
-	public Pencilable(int writePoints, int erasePoints, int pencilLength){
+	public AbstractPencil(int writePoints, int erasePoints, int pencilLength){
 		this.writePoints = writePoints;
 		this.erasePoints = erasePoints;
 		this.pencilLength = pencilLength;
@@ -87,8 +92,10 @@ public abstract class Pencilable
 	}
 	
 	
-	// These methods process points and strings for the system  in
-	// major events such as collisions, writing, and erasing
+	// These are helper methods process points and strings for the system 
+	// during major events such as collisions, writing, and erasing
+	// Use only for within the package to create different versions of the "same" 
+	// pencil while following the same structure
 	abstract void characterPointWriting(StringBuilder degradation, char writeChar);
 	abstract void collisionPointWriting(StringBuilder degradation);
 	abstract int characterPointErasing(String text);

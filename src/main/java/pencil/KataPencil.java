@@ -1,6 +1,6 @@
 package pencil;
 
-public class KataPencil extends Pencilable {
+public class KataPencil extends AbstractPencil {
 
 	public KataPencil(int writePoints, int erasePoints, int pencilLength) {
 		super(writePoints, erasePoints, pencilLength);

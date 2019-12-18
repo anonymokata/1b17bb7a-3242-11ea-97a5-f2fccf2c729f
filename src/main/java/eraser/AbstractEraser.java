@@ -2,7 +2,7 @@ package eraser;
 
 import paper.Paperable;
 
-public abstract class AbstractEraser implements Erasable {
+abstract class AbstractEraser implements AbstractErasable {
 	public boolean eraseFromPaper(Paperable paper, String desiredText) {
 		// Find last index, returning false if desiredText not found
 		int erasureStart = paper.getText().lastIndexOf(desiredText);

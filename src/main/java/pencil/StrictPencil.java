@@ -1,6 +1,6 @@
 package pencil;
 
-public class StrictPencil extends Pencilable {
+public class StrictPencil extends AbstractPencil {
 
 	public StrictPencil(int writePoints, int erasePoints, int pencilLength) {
 		super(writePoints, erasePoints, pencilLength);

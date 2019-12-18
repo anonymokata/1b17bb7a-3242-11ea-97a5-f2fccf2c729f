@@ -2,7 +2,7 @@ package pencil;
 
 import editor.EditableFactory;
 import editor.Editables;
-import eraser.AbstractEraser;
+import eraser.AbstractErasable;
 import eraser.ErasableFactory;
 import eraser.Erasables;
 import writer.WritableFactory;
@@ -11,11 +11,11 @@ import writer.Writables;
 /**
  * @author Adrian Hernandez
  */
-public class Pencil extends Pencilable {
+public class Pencil extends AbstractPencil {
 	public Pencil(int writePoints, int erasePoints, int pencilLength){
 		super(writePoints,erasePoints,pencilLength);
 		writer = WritableFactory.getWritable(Writables.Writer);
-		eraser = (AbstractEraser) ErasableFactory.getErasable(Erasables.Eraser);
+		eraser = (AbstractErasable) ErasableFactory.getErasable(Erasables.Eraser);
 		editor = EditableFactory.getEditable(Editables.Editor);
 	}
 	
