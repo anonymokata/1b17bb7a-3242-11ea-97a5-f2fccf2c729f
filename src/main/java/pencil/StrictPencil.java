@@ -1,4 +1,4 @@
-package graphitePencil;
+package pencil;
 
 public class StrictPencil extends Pencilable {
 

@@ -1,10 +1,11 @@
-package graphitePencil;
+package kataTests;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import paper.Paper;
+import pencil.Pencil;
 
 public class PencilTest {
 

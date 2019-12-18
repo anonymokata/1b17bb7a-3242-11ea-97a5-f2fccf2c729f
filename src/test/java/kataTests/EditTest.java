@@ -1,4 +1,4 @@
-package graphitePencil;
+package kataTests;
 
 import static org.junit.Assert.*;
 

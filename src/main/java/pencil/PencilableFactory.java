@@ -1,4 +1,4 @@
-package graphitePencil;
+package pencil;
 
 public class PencilableFactory {
 	// Return an instance of desired object

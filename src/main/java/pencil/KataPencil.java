@@ -1,4 +1,4 @@
-package graphitePencil;
+package pencil;
 
 public class KataPencil extends Pencilable {
 

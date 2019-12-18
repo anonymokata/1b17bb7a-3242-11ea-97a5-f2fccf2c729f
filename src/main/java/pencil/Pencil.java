@@ -1,4 +1,4 @@
-package graphitePencil;
+package pencil;
 
 import editor.EditableFactory;
 import editor.Editables;
