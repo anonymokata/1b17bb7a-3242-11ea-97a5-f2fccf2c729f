@@ -11,7 +11,7 @@ import writer.Writables;
 /**
  * @author Adrian Hernandez
  */
-public class Pencil extends AbstractPencil {
+public class Pencil extends Pencilable {
 	public Pencil(int writePoints, int erasePoints, int pencilLength){
 		super(writePoints,erasePoints,pencilLength);
 		writer = WritableFactory.getWritable(Writables.Writer);

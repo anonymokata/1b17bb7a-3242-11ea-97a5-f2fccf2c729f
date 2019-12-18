@@ -8,7 +8,7 @@ import paper.Paperable;
 import writer.Writable;
 import writer.Writer;
 
-public abstract class AbstractPencil
+public abstract class Pencilable
 	implements Writable, Editable, Erasable {
 	int writePoints;
 	int erasePoints;
@@ -19,7 +19,7 @@ public abstract class AbstractPencil
 	Editable editor;
 	Writable writer;
 	
-	public AbstractPencil(int writePoints, int erasePoints, int pencilLength){
+	public Pencilable(int writePoints, int erasePoints, int pencilLength){
 		this.writePoints = writePoints;
 		this.erasePoints = erasePoints;
 		this.pencilLength = pencilLength;
