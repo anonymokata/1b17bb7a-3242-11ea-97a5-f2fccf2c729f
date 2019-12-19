@@ -10,7 +10,7 @@ public class EditableFactory {
 	            eraser = new StrictEditor();
 	            break;
 	        case Editor:
-	            eraser = new Editor();
+	            eraser = new WeakEditor();
 	            break;
 	        default:
 	            break;

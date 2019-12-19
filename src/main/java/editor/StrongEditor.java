@@ -3,12 +3,12 @@ package editor;
 import paper.Paperable;
 
 /* Editor Implementation: 
- * Should incoming WS overwrite a paper's special WS? No
+ * Should incoming WS overwrite a paper's special WS? Yes
  * Should incoming text overwrite a paper's special WS? Yes
  */
 
-public class StrictEditor implements Editable {
-	
+public class StrongEditor implements Editable {
+
 	@Override
 	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder paperText = new StringBuilder(paper.getText());
@@ -31,7 +31,7 @@ public class StrictEditor implements Editable {
 						// Paper WS
 						if(Character.isWhitespace(paperChar)) {
 							// Incoming WS versus Paper WS: 
-							paperText.setCharAt(startIndex + i, paperChar);
+							paperText.setCharAt(startIndex + i, replaceChar);
 						// Paper Text
 						} else {
 							// Incoming WS versus Paper Text: 
