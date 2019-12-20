@@ -10,7 +10,7 @@ import editor.Editables;
 import paper.Paper;
 
 public class EditTest {
-	Editable Editor = EditableFactory.getEditable(Editables.Editor);
+	Editable Editor = EditableFactory.getEditable(Editables.WeakEditor);
 	/*********************** Edit Tests ***********************/
 	@Test
 	public void editorShouldEditBlankSpaceOnPaperWithReplacementString() {
@@ -123,7 +123,7 @@ public class EditTest {
 	
 	/*********************** Overflow Tests ***********************/
 	@Test
-	public void editorShouldWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
+	public void editorShouldNotWriteToPaperIfReplacementTextGoesPastEndOfPaper() {
 		String text = "The cow goes ";
 		Paper story = new Paper(text);
 		
@@ -132,7 +132,7 @@ public class EditTest {
 		String replacement = " moo!";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow goes moo!";
+		String expected = text;
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}

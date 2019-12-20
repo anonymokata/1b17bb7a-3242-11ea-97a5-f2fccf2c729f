@@ -11,11 +11,14 @@ import paper.Paperable;
 abstract class AbstractPencil
 	implements Pencilable {
 	
-	// it could be beneficial to to have access to this in subclasses
+	// it could be beneficial to to have access to this in all subclasses
 	protected int writePoints;
 	protected int erasePoints;
 	protected int pencilLength;
 	protected final int defaultWritePoints;
+	
+	// Dull Point writing
+	DullStyle writingWithNoPoints;
 	
 	// These are for modular customization of OUR pencil logic.
 	// since this is for our logic simplification, keep it in the package
@@ -23,11 +26,19 @@ abstract class AbstractPencil
 	Editable editor;
 	Writable writer;
 	
+	// sets the inital value and default value of write points at same time
 	public AbstractPencil(int writePoints, int erasePoints, int pencilLength){
 		this.writePoints = writePoints;
 		this.erasePoints = erasePoints;
 		this.pencilLength = pencilLength;
 		this.defaultWritePoints = writePoints;
+	}
+	
+	public AbstractPencil(int initialWritePoints, int erasePoints, int pencilLength, int defaultWritePoints) {
+		this.writePoints = initialWritePoints;
+		this.erasePoints = erasePoints;
+		this.pencilLength = pencilLength;
+		this.defaultWritePoints = defaultWritePoints;
 	}
 	
 	public void writeToPaper(Paperable paper, String writeText) {
@@ -46,6 +57,7 @@ abstract class AbstractPencil
 	
 	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder degradationReplacementText = new StringBuilder();
+		StringBuilder overflowText = new StringBuilder();
 		String paperText = paper.getText();
 		int paperLength = paperText.length();
 		
@@ -56,6 +68,7 @@ abstract class AbstractPencil
 			if(i + startIndex >= paperLength ) {
 				// avoid IndexOutOfBounds error and handle overflow text
 				characterPointWriting(degradationReplacementText,replaceChar);
+				overflowText.append(replaceChar);
 			} else {
 				char paperChar = paperText.charAt(startIndex + i);
 				if(!Character.isWhitespace(paperChar) && !Character.isWhitespace(replaceChar)) {
@@ -69,7 +82,10 @@ abstract class AbstractPencil
 		}
 		
 		String degradedReplacementText = degradationReplacementText.toString();
-		return editor.editOnPaper(paper, degradedReplacementText, startIndex);
+		boolean edited = editor.editOnPaper(paper, degradedReplacementText, startIndex);
+		writer.writeToPaper(paper, overflowText.toString());
+		
+		return edited;
 	}
 	
 	public boolean eraseFromPaper(Paperable paper, String eraseText) {
@@ -96,9 +112,62 @@ abstract class AbstractPencil
 	// during major events such as collisions, writing, and erasing
 	// Use only for within the package to create different versions of the "same" 
 	// pencil while following the same structure
-	abstract void characterPointWriting(StringBuilder degradation, char writeChar);
-	abstract void collisionPointWriting(StringBuilder degradation);
-	abstract int characterPointErasing(String text);
+	void characterPointWriting(StringBuilder degradation, char writeChar) {
+		char appendChar = writeChar;
+		if(writePoints > 0) {
+			if(Character.isUpperCase(writeChar)) {
+				if(writePoints > 1) {
+					writePoints -= 2;
+				}  else {
+					// Any failed attempts cost a point
+					// essentially zero out and place a blank space
+					writePoints--;						
+					appendChar = ' ';
+				}
+			} else if(!Character.isWhitespace(writeChar)){
+				// default to one for anything else that isn't whitespace
+				writePoints--;
+			}
+		} else {
+			dullPointWriting(degradation,writeChar);
+		}
+		
+		degradation.append(appendChar);
+	}
+	
+	void collisionPointWriting(StringBuilder degradation) {
+		// Collisions will count for 1 point, Any failed attempts cost a point
+		if(writePoints > 0) {
+			degradation.append('@');
+			writePoints--;
+		} else {
+			degradation.append(' ');
+		}
+	}
+	
+	int characterPointErasing(String text) {
+		int spaceAdjusted = 0;
+		
+		// Get number of non white-space characters
+		int rightPortion = text.replaceAll("\\s+", "").length();
+		if(erasePoints >= rightPortion) {
+			erasePoints -= rightPortion;
+		} else {
+			rightPortion = erasePoints;
+			erasePoints = 0;
+		}
+		
+		// find number of characters from including whitespace
+		// while considering how many non-white space chars we can erase
+		for(int i = text.length() - 1; i >= 0 && rightPortion > 0; i--) {
+			if(!Character.isWhitespace(text.charAt(i))){
+				rightPortion--;
+			}
+			spaceAdjusted++;
+		}
+		
+		return spaceAdjusted;
+	}
 	
 	public int getWritePoints() {
 		return writePoints;
@@ -114,5 +183,25 @@ abstract class AbstractPencil
 	
 	public int getDefaultWritePoints() {
 		return defaultWritePoints;
+	}
+	
+	
+	// Dull Point processing
+	DullStyle getDullStyle() {
+		return writingWithNoPoints;
+	}
+	
+	public Pencilable setDullStyle(DullStyle style) {
+		writingWithNoPoints = style;
+		return this;
+	}
+	
+	void dullPointWriting(StringBuilder text, char writeChar) {
+		if(Character.isWhitespace(writeChar) 
+				&& getDullStyle() == DullStyle.WhiteSpaceCompatible) {
+			text.append(writeChar);
+		} else {
+			text.append(' ');
+		}
 	}
 }

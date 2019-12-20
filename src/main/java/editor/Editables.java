@@ -1,5 +1,5 @@
 package editor;
 
 public enum Editables {
-	Editor, StrictEditor
+	WeakEditor, LooseEditor, StrictEditor, StrongEditor
 }

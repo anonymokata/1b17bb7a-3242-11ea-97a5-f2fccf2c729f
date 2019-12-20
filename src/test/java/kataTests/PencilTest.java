@@ -84,7 +84,6 @@ public class PencilTest {
 		int availablePoints = pencil.getWritePoints();
 		assertEquals(5,availablePoints);
 		
-		// Test with 3 characters
 		pencil.writeToPaper(paper, "<.  />9");
 		availablePoints = pencil.getWritePoints();
 		assertEquals(0,availablePoints);
