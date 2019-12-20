@@ -1,8 +1,14 @@
 package pencil;
 
+import editor.Editable;
+import eraser.AbstractErasable;
+import writer.Writable;
+
+// might need to use erasable
+// TODO: confirm above
 public interface CustomizablePencil<T> {
-	T setWrtiable();
-	T setEditable();
-	T setErasable();
-	T setDullStyle();
+	T setWritable(Writable writer);
+	T setEditable(Editable editor);
+	T setErasable(AbstractErasable eraser);
+	T setDullStyle(DullStyle dullWriting);
 }

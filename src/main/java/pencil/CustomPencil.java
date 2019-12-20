@@ -4,7 +4,6 @@ import editor.Editable;
 import editor.EditableFactory;
 import editor.Editables;
 import eraser.AbstractErasable;
-import eraser.Erasable;
 import eraser.ErasableFactory;
 import eraser.Erasables;
 import writer.Writable;
@@ -45,8 +44,8 @@ public class CustomPencil extends AbstractPencil {
 		return this;
 	}
 	
-	public CustomPencil setErasable(Erasable eraser) {
-		this.eraser = (AbstractErasable) eraser;
+	public CustomPencil setErasable(AbstractErasable eraser) {
+		this.eraser = eraser;
 		return this;
 	}
 	
