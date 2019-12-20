@@ -27,6 +27,4 @@ public class Pencil extends AbstractPencil {
 		editor = EditableFactory.getEditable(Editables.WeakEditor);
 		writingWithNoPoints = DullStyle.WhiteSpaceCompatible;
 	}
-	
-	
 }

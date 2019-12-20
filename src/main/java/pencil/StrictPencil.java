@@ -1,28 +1,29 @@
 package pencil;
 
+import editor.EditableFactory;
+import editor.Editables;
+import eraser.AbstractErasable;
+import eraser.ErasableFactory;
+import eraser.Erasables;
+import writer.WritableFactory;
+import writer.Writables;
+
 public class StrictPencil extends AbstractPencil {
 
-	public StrictPencil(int writePoints, int erasePoints, int pencilLength) {
-		super(writePoints, erasePoints, pencilLength);
-		// TODO Auto-generated constructor stub
+	// Use in conjunction with Strict paper for newline free experience
+	public StrictPencil(int writePoints, int erasePoints, int pencilLength){
+		super(writePoints,erasePoints,pencilLength);
+		writer = WritableFactory.getWritable(Writables.StrictWriter);
+		eraser = (AbstractErasable) ErasableFactory.getErasable(Erasables.StrictEraser);
+		editor = EditableFactory.getEditable(Editables.StrictEditor);
+		writingWithNoPoints = DullStyle.BlankSpaceOnly;
 	}
-
-	@Override
-	void characterPointWriting(StringBuilder degradation, char writeChar) {
-		// TODO Auto-generated method stub
-
+	
+	public StrictPencil(int initialWritePoints, int erasePoints, int pencilLength, int defaultWritePoints){
+		super(initialWritePoints,erasePoints,pencilLength, defaultWritePoints);
+		writer = WritableFactory.getWritable(Writables.StrictWriter);
+		eraser = (AbstractErasable) ErasableFactory.getErasable(Erasables.StrictEraser);
+		editor = EditableFactory.getEditable(Editables.StrictEditor);
+		writingWithNoPoints = DullStyle.BlankSpaceOnly;
 	}
-
-	@Override
-	void collisionPointWriting(StringBuilder degradation) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	int characterPointErasing(String text) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
