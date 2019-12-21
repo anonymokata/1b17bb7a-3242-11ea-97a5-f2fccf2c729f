@@ -17,4 +17,12 @@ public class WritableFactory {
         }
         return writer;
 	}
+	
+	static public Writer getWriter() {
+		return new Writer();
+	}
+	
+	static public StrictWriter getStrictWriter() {
+		return new StrictWriter();
+	}
 }

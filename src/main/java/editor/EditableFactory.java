@@ -23,4 +23,20 @@ public class EditableFactory {
         }
         return eraser;
 	}
+	
+	static public StrongEditor getStrongEditor() {
+		return new StrongEditor();
+	}
+	
+	static public StrictEditor getStrictEditor() {
+		return new StrictEditor();
+	}
+	
+	static public LooseEditor getLooseEditor() {
+		return new LooseEditor();
+	}
+	
+	static public WeakEditor getWeakEditor() {
+		return new WeakEditor();
+	}
 }

@@ -1,5 +1,7 @@
 package eraser;
 
+// tried to use generic for this but you can instantiate generics
+// I don't want class objects being thrown around either
 public class ErasableFactory {
 	
 	// Return an instance of desired object
@@ -16,5 +18,13 @@ public class ErasableFactory {
 	            break;
         }
         return eraser;
+	}
+	
+	static public StrictEraser getStrictEraser() {
+		return new StrictEraser();
+	}
+	
+	static public Eraser getEraser() {
+		return new Eraser();
 	}
 }

@@ -17,4 +17,12 @@ public class PaperableFactory {
         }
         return paper;
 	}
+	
+	static public StrictPaper getStrictPaper() {
+		return new StrictPaper();
+	}
+	
+	static public Paper getPaper() {
+		return new Paper();
+	}
 }

@@ -40,4 +40,34 @@ public class PencilableFactory {
         }
         return pencil;
 	}
+	
+	static public CustomPencil getCustomPencil(int initialWritePoints, int erasePoints, 
+			int pencilLength, int defaultWritePoints) {
+		return new CustomPencil(initialWritePoints,erasePoints,pencilLength,defaultWritePoints);
+	}
+	
+	static public CustomPencil getCustomPencil(int initialWritePoints, int erasePoints, 
+			int pencilLength) {
+		return new CustomPencil(initialWritePoints,erasePoints,pencilLength);
+	}
+	
+	static public StrictPencil getStrictPencil(int initialWritePoints, int erasePoints, 
+			int pencilLength, int defaultWritePoints) {
+		return new StrictPencil(initialWritePoints,erasePoints,pencilLength,defaultWritePoints);
+	}
+	
+	static public StrictPencil getStrictPencil(int initialWritePoints, int erasePoints, 
+			int pencilLength) {
+		return new StrictPencil(initialWritePoints,erasePoints,pencilLength);
+	}
+	
+	static public Pencil getPencil(int initialWritePoints, int erasePoints, 
+			int pencilLength, int defaultWritePoints) {
+		return new Pencil(initialWritePoints,erasePoints,pencilLength,defaultWritePoints);
+	}
+	
+	static public Pencil getPencil(int initialWritePoints, int erasePoints, 
+			int pencilLength) {
+		return new Pencil(initialWritePoints,erasePoints,pencilLength);
+	}
 }
