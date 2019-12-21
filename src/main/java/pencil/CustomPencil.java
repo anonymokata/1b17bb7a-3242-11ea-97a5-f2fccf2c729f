@@ -16,7 +16,8 @@ import writer.Writables;
 // .setEditable(LooseEditor)
 // .setErasable(Erasable)
 // .setDullStyle(BlankSpaceOnly)
-public class CustomPencil extends AbstractPencil {
+public class CustomPencil extends AbstractPencil 
+	implements CustomizablePencil<CustomPencil> {
 	// Use in conjunction with Strict paper for newline free experience
 	public CustomPencil(int writePoints, int erasePoints, int pencilLength){
 		super(writePoints,erasePoints,pencilLength);
@@ -34,21 +35,25 @@ public class CustomPencil extends AbstractPencil {
 		writingWithNoPoints = DullStyle.WhiteSpaceCompatible;
 	}
 	
+	@Override
 	public CustomPencil setWritable(Writable writer) {
 		this.writer = writer;
 		return this;
 	}
 	
-	public CustomPencil setEditbale(Editable editor) {
+	@Override
+	public CustomPencil setEditable(Editable editor) {
 		this.editor = editor;
 		return this;
 	}
 	
+	@Override
 	public CustomPencil setErasable(AbstractErasable eraser) {
 		this.eraser = eraser;
 		return this;
 	}
 	
+	@Override
 	public CustomPencil setDullStyle(DullStyle writingWithNoPoints) {
 		this.writingWithNoPoints = writingWithNoPoints;
 		return this;

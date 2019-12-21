@@ -41,6 +41,7 @@ abstract class AbstractPencil
 		this.defaultWritePoints = defaultWritePoints;
 	}
 	
+	@Override
 	public void writeToPaper(Paperable paper, String writeText) {
 		StringBuilder degradationWriteText = new StringBuilder();
 		
@@ -55,6 +56,7 @@ abstract class AbstractPencil
 		writer.writeToPaper(paper, degradedWriteText);
 	}
 	
+	@Override
 	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder degradationReplacementText = new StringBuilder();
 		StringBuilder overflowText = new StringBuilder();
@@ -87,11 +89,13 @@ abstract class AbstractPencil
 		return edited;
 	}
 	
+	@Override
 	public boolean eraseFromPaper(Paperable paper, String eraseText) {
 		int erasableCharacters = characterPointErasing(eraseText);
 		return eraser.eraseFromPaper(paper, eraseText, erasableCharacters);
 	}
 	
+	@Override
 	public boolean sharpen() {
 		if(pencilLength > 0) {
 			// Only reset if we still have length on pencil
@@ -186,7 +190,7 @@ abstract class AbstractPencil
 	
 	
 	// Dull Point processing
-	DullStyle getDullStyle() {
+	public DullStyle getDullStyle() {
 		return writingWithNoPoints;
 	}
 	

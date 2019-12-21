@@ -258,11 +258,6 @@ public class PencilTest {
 		assertEquals(expected,paperText);
 	}
 	
-	// Should we account for this situation?
-	//public void pencilShouldNotCollideIfReplacementStringAndPaperAreSameCharacter(){
-	//
-	//}
-	
 	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void whenEditingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
