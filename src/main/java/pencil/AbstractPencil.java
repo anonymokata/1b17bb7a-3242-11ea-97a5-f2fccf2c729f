@@ -67,8 +67,7 @@ abstract class AbstractPencil
 			char replaceChar = replacementText.charAt(i);
 			if(i + startIndex >= paperLength ) {
 				// avoid IndexOutOfBounds error and handle overflow text
-				characterPointWriting(degradationReplacementText,replaceChar);
-				overflowText.append(replaceChar);
+				characterPointWriting(overflowText,replaceChar);
 			} else {
 				char paperChar = paperText.charAt(startIndex + i);
 				if(!Character.isWhitespace(paperChar) && !Character.isWhitespace(replaceChar)) {
@@ -129,7 +128,7 @@ abstract class AbstractPencil
 				writePoints--;
 			}
 		} else {
-			dullPointWriting(degradation,writeChar);
+			appendChar = dullPointWriting(writeChar);
 		}
 		
 		degradation.append(appendChar);
@@ -196,12 +195,12 @@ abstract class AbstractPencil
 		return this;
 	}
 	
-	void dullPointWriting(StringBuilder text, char writeChar) {
+	char dullPointWriting(char writeChar) {
 		if(Character.isWhitespace(writeChar) 
 				&& getDullStyle() == DullStyle.WhiteSpaceCompatible) {
-			text.append(writeChar);
+			return writeChar;
 		} else {
-			text.append(' ');
+			return ' ';
 		}
 	}
 }

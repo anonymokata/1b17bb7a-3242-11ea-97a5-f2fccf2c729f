@@ -103,6 +103,13 @@ public class PencilTest {
 	@Test
 	public void whenOutOfWritePointsPencilShouldNotLostAnymorePointsWhileWriting() {
 		// IE should never have negative write points
+		Pencil pencil = new Pencil(1,10,10);
+		Paper paper = new Paper();
+		
+		// Test with 1 character
+		pencil.writeToPaper(paper, "Abc");
+		int availablePoints = pencil.getWritePoints();
+		assertEquals(0,availablePoints);
 	}
 	
 	/*********************** Write Degradation Tests ***********************/
@@ -127,6 +134,7 @@ public class PencilTest {
 		pencil.writeToPaper(paper, text);
 		String expected = "I am more th     ";
 		String paperText = paper.getText();
+		System.out.println(paperText);
 		assertEquals(expected,paperText);
 	}
 	
