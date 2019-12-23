@@ -2,7 +2,12 @@ package editor;
 
 import paper.Paperable;
 
-/* IMPORTANT NOTES:
+/** The editables in the editor package will only edit existing text from paper.
+ * Any excess going past end of paper from replacement string will be ignored. 
+ * They accept an instance of paper to edit and return true if startIndex was 
+ * within the paper's length.
+ * 
+ * IMPORTANT NOTES: 
  * For editor package, all concrete editors will never collide incoming newlines 
  * with text on paper. IE All incoming white space does not affect text on paper.
  * 
@@ -16,7 +21,18 @@ import paper.Paperable;
  * The second scenario is if incoming WS should overwrite a paper's special WS.
  * I decided to handle all 4 combinations. The top of the concrete classes will
  * include comments of the two scenarios above and answer Yes or No to them.
+ * 
+ * @author Adrian Hernandez
  */
 public interface Editable {
+	/** editOnPaper will insert all text into allowed whitespace on paper and 
+	 * will clash all text on text with a '@' character. For editor package, 
+	 * implementation varies on handling special white space (non blank spaces).
+	 *
+	 * @param paper The instance of paper that should be edited
+	 * @param replacementText The text that should be inserted
+	 * @param startIndex The index the text should begin to be inserted
+	 * @return Return true if index was in Paper index range
+	 */
 	boolean editOnPaper(Paperable paper, String replacementText, int startIndex);
 }
