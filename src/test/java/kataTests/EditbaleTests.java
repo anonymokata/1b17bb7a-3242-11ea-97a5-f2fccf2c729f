@@ -17,7 +17,7 @@ import paper.Paper;
 
 //Tells runner to run tests with different data sets
 @RunWith(Parameterized.class)
-public class EditTest {
+public class EditbaleTests {
 	// public static Object[][] data() {}
 	// This sets the "database" that the runner will pull from
 	// The column types of this "database" are your parameters
