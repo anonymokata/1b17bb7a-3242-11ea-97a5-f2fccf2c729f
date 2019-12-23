@@ -2,13 +2,21 @@ package editor;
 
 import paper.Paperable;
 
-/* Editor Implementation: 
+/** LooseEditor Implementation: 
  * Should incoming WS overwrite a paper's special WS? Yes
  * Should incoming text overwrite a paper's special WS? No
+ * @author Adrian Hernandez
  */
-
 public class LooseEditor implements Editable {
 
+	/** LooseEditor will NOT insert text into special whitespace on paper, but will
+	 * overwrite existing special whitespace with incoming whitespace. 
+	 *
+	 * @param paper The instance of paper that should be edited
+	 * @param replacementText The text that should be inserted
+	 * @param startIndex The index the text should begin to be inserted
+	 * @return Return true if index was in Paper index range
+	 */
 	@Override
 	public boolean editOnPaper(Paperable paper, String replacementText, int startIndex) {
 		StringBuilder paperText = new StringBuilder(paper.getText());
