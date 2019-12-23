@@ -34,8 +34,8 @@ public interface Editable {
 	 * implementation varies on handling special white space (non blank spaces).
 	 *
 	 * @param paper The instance of paper that should be edited
-	 * @param replacementText The text that should be inserted
-	 * @param startIndex The index the text should begin to be inserted
+	 * @param replacementText The replacementText that should be inserted
+	 * @param startIndex The index the text should be inserted
 	 * @return Return true if index was in Paper index range
 	 */
 	boolean editOnPaper(Paperable paper, String replacementText, int startIndex);

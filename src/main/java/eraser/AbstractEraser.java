@@ -6,9 +6,13 @@ import paper.Paperable;
 // I still wanted the erasing to be separate even if it cost me another
 // class/interface because of a necessary edit function.
 
-// In order to close AbstractEraser from modification, I had to make 
-// a new interface to still allow for extensibility
+// In order to close AbstractEraser from modification, I am making it non public.
+// I had to make a new interface to still allow for extensibility
 abstract class AbstractEraser implements AbstractErasable {
+	/**
+	 *
+	 */
+	@Override
 	public boolean eraseFromPaper(Paperable paper, String desiredText) {
 		// Find last index, returning false if desiredText not found
 		int erasureStart = paper.getText().lastIndexOf(desiredText);
@@ -18,6 +22,7 @@ abstract class AbstractEraser implements AbstractErasable {
 		return eraseFromPaper(paper,erasureStart,erasureEnd);
 	}
 	
+	@Override
 	public boolean eraseFromPaper(Paperable paper, String desiredText, int portion) {
 		// Find last index, returning false if desiredText not found
 		int erasureStart = paper.getText().lastIndexOf(desiredText);
@@ -26,8 +31,6 @@ abstract class AbstractEraser implements AbstractErasable {
 		
 		// this takes into account right to left degradation
 		erasureStart += desiredText.length() - portion;
-		
-		
 		return eraseFromPaper(paper,erasureStart,erasureEnd);
 	}
 	

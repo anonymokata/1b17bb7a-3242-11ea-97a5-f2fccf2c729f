@@ -3,14 +3,58 @@ package kataTests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
 
 import editor.Editable;
 import editor.EditableFactory;
 import editor.Editables;
+import eraser.Erasable;
+import eraser.ErasableFactory;
+import eraser.Erasables;
 import paper.Paper;
 
+//Tells runner to run tests with different data sets
+@RunWith(Parameterized.class)
 public class EditTest {
-	Editable Editor = EditableFactory.getEditable(Editables.WeakEditor);
+	// public static Object[][] data() {}
+	// This sets the "database" that the runner will pull from
+	// The column types of this "database" are your parameters
+	// Runner will 
+	//    1. Read a "row" of data (the inner array) 
+	//    2. Assign parameters (column types) as specified below
+	//    3. Run all unit test with "row" of data
+	//    4. Repeat 1-3 until all "rows" have been read
+	
+	// name = "{1} : myString {3}" 
+	// Sets a label to be attached to the unit tests where
+	// {#} is the toString() of data in column # in current row
+	@Parameterized.Parameters(name = "{0}")
+    public static Object[][] data() {
+        return new Object[][] {
+        	{"WeakEditor", EditableFactory.getEditable(Editables.WeakEditor), false, false},
+        	{"LooseEditor", EditableFactory.getEditable(Editables.LooseEditor), false, true},
+        	{"StrictEditor", EditableFactory.getEditable(Editables.StrictEditor), true, false},
+        	{"StrongEditor", EditableFactory.getEditable(Editables.StrongEditor), true, true}
+        };
+    }
+	
+	// This helps identify which class of eraser was used in a clean way.
+	// This is only used for a reference in the name = {0}
+	// because name = {1} gives me excess (nasty looking) information 
+	@Parameter(0)
+	public String forTestLabelingOnly;
+	// This is the generic object under test.
+	@Parameter(1)
+	public Editable Editor;
+	// Check if editor will overwrite WS on paper with incoming WS
+	@Parameter(2)
+	public boolean incomingWhiteSpacePriority;
+	// Check if editor will overwrite WS on paper with incoming text
+	@Parameter(3)
+	public boolean incomingTextPriorty;
+	
 	/*********************** Edit Tests ***********************/
 	@Test
 	public void editorShouldEditBlankSpaceOnPaperWithReplacementString() {

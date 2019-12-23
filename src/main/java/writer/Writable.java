@@ -9,8 +9,8 @@ import paper.Paperable;
  */
 public interface Writable {
 	/** writeToPaper appends newText to paper
-	 * @param paper The instance of paper that should be edited
-	 * @param newText The text to APPEND to paper's text
+	 * @param paper The instance of paper that should be written
+	 * @param newText The newText to APPEND to paper's text
 	 */
 	public void writeToPaper(Paperable paper, String newText);
 }
