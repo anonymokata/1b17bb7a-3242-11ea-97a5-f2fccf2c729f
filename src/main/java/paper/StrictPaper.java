@@ -1,8 +1,8 @@
 package paper;
 
 /** StrictPaper Implementation:
- * StrictPaper converts all whitespace to blank spaces before
- * setting the incoming text for paper.
+ * StrictPaper converts all whitespace to blank spaces and then
+ * APPENDS the incoming text to paper.
  * @author Adrian Hernandez
  *
  */

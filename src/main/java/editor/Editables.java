@@ -1,6 +1,6 @@
 package editor;
 
-/** Enumeration of all the concrete Editable types using their exact class names
+/** Enumeration of all the concrete Editable types in edit package using their exact class names
  * @author Adrian Hernandez
  */
 public enum Editables {

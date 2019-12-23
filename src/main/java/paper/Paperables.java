@@ -1,6 +1,6 @@
 package paper;
 
-/** Enumeration of all the concrete Paperable types using their exact class names
+/** Enumeration of all the concrete Paperable types in paper package using their exact class names
  * @author Adrian Hernandez
  */
 public enum Paperables {
