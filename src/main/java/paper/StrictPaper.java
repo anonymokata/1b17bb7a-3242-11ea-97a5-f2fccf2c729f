@@ -1,7 +1,8 @@
 package paper;
 
-/** Concrete paper implementation that accepts all text and converts all 
- * whitespace to a blank space
+/** StrictPaper Implementation:
+ * StrictPaper converts all whitespace to blank spaces before
+ * setting the incoming text for paper.
  * @author Adrian Hernandez
  *
  */
@@ -34,7 +35,8 @@ public class StrictPaper implements Paperable {
 		return text;
 	}
 
-	/**
+	/** setText will replace all whitespace with blank spaces and set the 
+	 * resulting text to be the paper's text
 	 * @param text text will have all whitespace converted to blank spaces
 	 * and then completely replace this paper's text
 	 */

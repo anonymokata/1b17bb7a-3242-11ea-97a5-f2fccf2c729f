@@ -1,6 +1,7 @@
 package paper;
 
-/** Concrete paper implementation that accepts all text and all whitespace
+/** Paper implementation: 
+ * Paper accepts all text and all whitespace as-is and sets text for paper.
  * @author Adrian Hernandez
  * A paper's text should only be set and retreived. No fancy function
  * should exist. That should be kept with the Pencil's utilities

@@ -2,7 +2,7 @@ package editor;
 
 import paper.Paperable;
 
-/** The editables in the editor package will only edit existing text from paper.
+/** Editables in the editor package will only edit existing text from paper.
  * Any excess going past end of paper from replacement string will be ignored. 
  * They accept an instance of paper to edit and return true if startIndex was 
  * within the paper's length.
