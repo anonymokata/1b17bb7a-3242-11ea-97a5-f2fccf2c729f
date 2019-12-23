@@ -1,17 +1,32 @@
 package paper;
 
+/** Concrete paper implementation that accepts all text and converts all 
+ * whitespace to a blank space
+ * @author Adrian Hernandez
+ *
+ */
 public class StrictPaper implements Paperable {
+	/**
+	 *  Represents ALL the text in the paper
+	 */
 	private String text;
 	
+	
+	/**
+	 * Initialize with an empty string
+	 */
 	public StrictPaper(){
 		this.setText("");
 	}
 	
+	/** Initialize paper with text
+	 * @param text - to be assigned to paper's text role using setText logic
+	 */
 	public StrictPaper(String text){
 		this.setText(text);
 	}
 
-	/**
+	/** Get ALL the text in paper
 	 * @return the text
 	 */
 	@Override
@@ -20,7 +35,8 @@ public class StrictPaper implements Paperable {
 	}
 
 	/**
-	 * @param text the text to set
+	 * @param text text will have all whitespace converted to blank spaces
+	 * and then completely replace this paper's text
 	 */
 	@Override
 	public void setText(String text) {
