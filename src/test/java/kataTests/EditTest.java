@@ -34,8 +34,8 @@ public class EditTest {
     public static Object[][] data() {
         return new Object[][] {
         	{"WeakEditor", EditableFactory.getEditable(Editables.WeakEditor), false, false},
-        	{"LooseEditor", EditableFactory.getEditable(Editables.LooseEditor), false, true},
-        	{"StrictEditor", EditableFactory.getEditable(Editables.StrictEditor), true, false},
+        	{"LooseEditor", EditableFactory.getEditable(Editables.LooseEditor), true, false},
+        	{"StrictEditor", EditableFactory.getEditable(Editables.StrictEditor), false, true},
         	{"StrongEditor", EditableFactory.getEditable(Editables.StrongEditor), true, true}
         };
     }
@@ -53,7 +53,7 @@ public class EditTest {
 	public boolean incomingWhiteSpacePriority;
 	// Check if editor will overwrite WS on paper with incoming text
 	@Parameter(3)
-	public boolean incomingTextPriorty;
+	public boolean incomingTextPriority;
 	
 	/*********************** Edit Tests ***********************/
 	@Test
@@ -73,7 +73,6 @@ public class EditTest {
 
 	@Test
 	public void editorShouldNotEditSpecialWhiteSpaceOnPaperWithReplacementString() {
-		// Use WSEditor to edit special white space characters
 		String text = "The cow jumped over the moon.\n\n\f\tmoo!";
 		Paper story = new Paper(text);
 		
@@ -84,12 +83,12 @@ public class EditTest {
 		
 		String expected = "The cow jumped over the moon.\n\n\f\tmoo!";
 		String paperText = story.getText();
-		assertEquals(expected,paperText);
+		boolean textOnNewLines = expected.equals(paperText);
+		assertEquals(incomingTextPriority,!textOnNewLines);
 	}
 	
 	@Test
 	public void editorShouldNotWriteSpecialWhiteSpaceFromReplacementString() {
-		// Use WSEditor to write special white space characters
 		String text = "The     jumped over the moon.";
 		Paper story = new Paper(text);
 		
@@ -99,14 +98,12 @@ public class EditTest {
 		Editor.editOnPaper(story,replacement,startIndex);
 		
 		String expected = "The cow jumped over the moon.";
-		String paperText = story.getText();
-		assertEquals(expected,paperText);
+
 	}
 	
 	/*********************** Collision Tests ***********************/
 	@Test
 	public void editorShouldNotCollideWithSpecialWhiteSpaceCharacters() {
-		// WSEditor can write over special white space characters
 		String text = "The cow jumped over the moon.\nmooooo!";
 		Paper story = new Paper(text);
 		
@@ -115,14 +112,19 @@ public class EditTest {
 		String replacement = "oink";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow jumped over the moon.\n@@@ooo!";
 		String paperText = story.getText();
-		assertEquals(expected,paperText);
+		if(incomingTextPriority) {
+			String expected = "The cow jumped over the moon.o@@@ooo!";
+			assertEquals(expected,paperText);
+		} else {
+			String expected = "The cow jumped over the moon.\n@@@ooo!";
+			assertEquals(expected,paperText);
+		}
 	}	
 	
 	@Test
 	public void editorShouldCollideWithAllNonWhiteSpaceCharactersWhenEditing() {
-		String text = "The cow jumped over the moon.\nmooooo!";
+		String text = "The cow jumped over the moon.mooooo!";
 		Paper story = new Paper(text);
 		
 		// Starting at new line
@@ -130,7 +132,7 @@ public class EditTest {
 		String replacement = "oiink";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow jumped over the moon.\n@@@@oo!";
+		String expected = "The cow jumped over the moon.@@@@@o!";
 		String paperText = story.getText();
 		assertEquals(expected,paperText);
 	}
@@ -160,9 +162,14 @@ public class EditTest {
 		String replacement = "cow\nran\nover";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow @@@p@@e@ver the moon.";
 		String paperText = story.getText();
-		assertEquals(expected,paperText);
+		if(incomingWhiteSpacePriority) {
+			String expected = "The cow\n@@@p@@e@ver the moon.";
+			assertEquals(expected,paperText);
+		} else {
+			String expected = "The cow @@@p@@e@ver the moon.";
+			assertEquals(expected,paperText);
+		}
 	}
 	
 	/*********************** Overflow Tests ***********************/
