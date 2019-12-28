@@ -4,6 +4,10 @@ import editor.Editable;
 import eraser.Erasable;
 import writer.Writable;
 
+/**
+ * @author Adrian Hernandez
+ *
+ */
 public interface Pencilable 
 	extends Writable, Editable, Erasable  {
 	

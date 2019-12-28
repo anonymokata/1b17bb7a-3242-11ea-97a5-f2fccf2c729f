@@ -7,11 +7,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameter;
 
-import eraser.Erasable;
-import eraser.ErasableFactory;
-import eraser.Erasables;
 import paper.Paper;
-import pencil.Pencil;
 import pencil.Pencilable;
 import pencil.PencilableFactory;
 import pencil.Pencilables;

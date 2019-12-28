@@ -10,14 +10,11 @@ import org.junit.runners.Parameterized.Parameter;
 import editor.Editable;
 import editor.EditableFactory;
 import editor.Editables;
-import eraser.Erasable;
-import eraser.ErasableFactory;
-import eraser.Erasables;
 import paper.Paper;
 
 //Tells runner to run tests with different data sets
 @RunWith(Parameterized.class)
-public class EditbaleTests {
+public class EditableTest {
 	// public static Object[][] data() {}
 	// This sets the "database" that the runner will pull from
 	// The column types of this "database" are your parameters
@@ -94,11 +91,17 @@ public class EditbaleTests {
 		
 		// Starting 1 space after 'The'
 		int startIndex = 4;
-		String replacement = "cow \n\n";
+		String replacement = "cow\n\n";
 		Editor.editOnPaper(story,replacement,startIndex);
 		
-		String expected = "The cow jumped over the moon.";
-
+		String paperText = story.getText();
+		if(incomingWhiteSpacePriority) {
+			String expected = "The cow\njumped over the moon.";
+			assertEquals(expected,paperText);
+		} else {
+			String expected = "The cow jumped over the moon.";
+			assertEquals(expected,paperText);
+		}
 	}
 	
 	/*********************** Collision Tests ***********************/
