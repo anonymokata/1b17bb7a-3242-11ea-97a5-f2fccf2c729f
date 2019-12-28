@@ -164,9 +164,17 @@ public class PencilTest {
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, text);
-		String expected = "I am         \n";
-		String paperText = paper.getText();
-		assertEquals(expected,paperText);
+
+
+		String paperText = paper.getText();	
+		if(whiteSpaceFriendlyPencil) {
+			String expected = "I am         \n";
+			assertEquals(expected,paperText);
+		} else {
+			String expected = "I am          ";
+			assertEquals(expected,paperText);
+		}
+
 	}
 	
 	@Test
