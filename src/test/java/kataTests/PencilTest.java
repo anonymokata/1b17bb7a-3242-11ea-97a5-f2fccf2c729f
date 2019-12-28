@@ -178,7 +178,6 @@ public class PencilTest {
 		pencil.writeToPaper(paper, text);
 		String expected = "I am more th     ";
 		String paperText = paper.getText();
-		System.out.println(paperText);
 		assertEquals(expected,paperText);
 	}
 	
@@ -466,9 +465,17 @@ public class PencilTest {
 		// Erases only the a's , preserving whitespace
 		String erasure = "a\na";
 		pencil.eraseFromPaper(paper, erasure);
-		String expected =  " \n ";
+
 		String paperText = paper.getText();
-		assertEquals(expected,paperText);
+		
+		if(whiteSpaceFriendlyPencil) {
+			String expected =  " \n ";
+			assertEquals(expected,paperText);
+		} else {
+			String expected =  "   ";
+			assertEquals(expected,paperText);
+		}
+
 	}
 	
 	/*********************** Point Degradation Tests ***********************/
