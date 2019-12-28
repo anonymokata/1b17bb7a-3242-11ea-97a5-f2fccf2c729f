@@ -3,18 +3,62 @@ package kataTests;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
 
+import eraser.Erasable;
+import eraser.ErasableFactory;
+import eraser.Erasables;
 import paper.Paper;
 import pencil.Pencil;
+import pencil.Pencilable;
+import pencil.PencilableFactory;
+import pencil.Pencilables;
 
+//Tells runner to run tests with different data sets
+@RunWith(Parameterized.class)
 public class PencilTest {
-
+	// public static Object[][] data() {}
+	// This sets the "database" that the runner will pull from
+	// The column types of this "database" are your parameters
+	// Runner will 
+	//    1. Read a "row" of data (the inner array) 
+	//    2. Assign parameters (column types) as specified below
+	//    3. Run all unit test with "row" of data
+	//    4. Repeat 1-3 until all "rows" have been read
+	
+	// name = "{1} : myString {3}" 
+	// Sets a label to be attached to the unit tests where
+	// {#} is the toString() of data in column # in current row
+	
+	@Parameterized.Parameters(name = "{0}")
+    public static Object[][] data() {
+        return new Object[][] {
+        	{"Pencil", Pencilables.Pencil, true},
+        	{"StrictPencil", Pencilables.StrictPencil, false }
+        };
+    }
+	
+	// This helps identify which class of eraser was used in a clean way.
+	// This is only used for a reference in the name = {0}
+	// because name = {1} gives me excess (nasty looking) information 
+	@Parameter(0)
+	public String forTestLabelingOnly;
+	// This is the type of generic object under test.
+	@Parameter(1)
+	public Pencilables pencilType;
+	// Used for testing of diverging functionalities 
+	@Parameter(2)
+	public boolean whiteSpaceFriendlyPencil;
+	
+	
 	/****************************
 	 *     WRITE UNIT TESTS     *
 	 ****************************/
 	@Test
 	public void pencilShouldWriteOnPaper() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper();
 		
 		// Simple write to paper using pencil
@@ -27,7 +71,7 @@ public class PencilTest {
 	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 lower character
@@ -43,7 +87,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenWritingPencilShouldLoseTwoWritePointsPerUpperCaseLetter() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 uppercase character
@@ -59,7 +103,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenWritingPencilShouldNotLoseWritePointsForAnyWhiteSpace() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper();
 		
 		// Test with space character
@@ -76,7 +120,7 @@ public class PencilTest {
 	@Test
 	public void whenWritingPencilShouldLoseOneWritePointPerNonWhiteSpaceNonAlphabeticalCharacter() {
 		// Basically, default to one point loss for everything else
-		Pencil pencil = new Pencil(20,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,20,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 character
@@ -91,7 +135,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldLoseOnePointForAnyFailedWriteAttempts() {
-		Pencil pencil = new Pencil(1,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,1,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 character
@@ -103,7 +147,7 @@ public class PencilTest {
 	@Test
 	public void whenOutOfWritePointsPencilShouldNotLostAnymorePointsWhileWriting() {
 		// IE should never have negative write points
-		Pencil pencil = new Pencil(1,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,1,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 character
@@ -115,7 +159,7 @@ public class PencilTest {
 	/*********************** Write Degradation Tests ***********************/
 	@Test
 	public void whenWritingPencilShouldAlwaysPreserveWhiteSpaceCharactersEvenWhenOutOfPoints() {
-		Pencil pencil = new Pencil(4,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,4,10,10);
 		String text = "I am newline \n";
 		Paper paper = new Paper();
 		
@@ -127,7 +171,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenOutOfWritePointsPencilShouldWriteBlankSpacesForNonWhiteSpaceCharacters() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		String text = "I am more than 10";
 		Paper paper = new Paper();
 		
@@ -139,7 +183,7 @@ public class PencilTest {
 	}
 	
 	public void whenNotEnoughPointsPencilShouldWriteBlankSpacesForNonWhiteSpaceCharacters() {
-		Pencil pencil = new Pencil(1,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,1,10,10);
 		Paper paper = new Paper();
 		
 		// Test with 1 character
@@ -154,7 +198,7 @@ public class PencilTest {
 	 ******************************/
 	@Test
 	public void afterSharpeningPencilWritingPointsShouldGoBackToDefault() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, "abcd");
@@ -166,7 +210,7 @@ public class PencilTest {
 	
 	@Test
 	public void afterSharpeningPencilLengthShouldDecreaseByOne() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, "abcd");
@@ -178,7 +222,7 @@ public class PencilTest {
 	/*********************** Sharpen Detection Tests ***********************/
 	@Test
 	public void pencilShouldNotSharpenIfPencilLengthIsZero() {
-		Pencil pencil = new Pencil(10,10,0);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,0);
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, "abcd");
@@ -189,7 +233,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldReturnFalseIfFailedToSharpen() {
-		Pencil pencil = new Pencil(10,10,0);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,0);
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, "abcd");
@@ -199,7 +243,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldReturnTrueIfSharpened() {
-		Pencil pencil = new Pencil(10,10,1);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,1);
 		Paper paper = new Paper();
 		
 		pencil.writeToPaper(paper, "abcd");
@@ -213,7 +257,7 @@ public class PencilTest {
 	 ***************************/
 	@Test
 	public void pencilShouldEditPaper() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper(" ");
 		
 		// Test with 1 lower character
@@ -225,7 +269,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldCollideIfPaperAndReplacementAreNonWhiteSpaceCharacters() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("abcdef!J,/");
 		
 		// Test with random characters
@@ -237,7 +281,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldNotEditPaperIfReplacementStringIsAWhiteSpaceCharacter() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("abcdef");
 		
 		// Test with blank spaces and random characters
@@ -248,7 +292,7 @@ public class PencilTest {
 	}
 	
 	public void pencilShouldWriteAllOverflowTextAsIsToPaper() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("a");
 		
 		// Test with random
@@ -261,7 +305,7 @@ public class PencilTest {
 	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void whenEditingPencilShouldLoseOneWritePointPerLowerCaseLetter() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("    ");
 		
 		// Test with 1 lower character
@@ -277,7 +321,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenEditingPencilShouldLoseTwoWritePointsPerUpperCaseLetter() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("    ");
 		
 		// Test with 1 uppercase character
@@ -293,7 +337,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenEditingPencilShouldNotLoseWritePointsForBlankSpace() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("    ");
 		
 		// Test with 1 blank space character
@@ -309,7 +353,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenEditingPencilShouldLoseOneWritePointPerCollision() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("aaaaaa");
 		
 		// Test with 1  character
@@ -326,7 +370,7 @@ public class PencilTest {
 	@Test
 	public void whenOutOfWritePointsPencilShouldNotLoseAnymorePointsWhileEditing() {
 		// IE should never have negative write points
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("       ");
 		
 		// Get down to zero points, don't sharpen
@@ -342,7 +386,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenEditingPencilShouldNotLoseWritePointsForSpecialWhiteSpaceCharacters() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("The     jumped over the moon.");
 		
 		// Starting 1 space after 'The'
@@ -357,7 +401,7 @@ public class PencilTest {
 	/*********************** Edit Degradation Tests ***********************/
 	@Test
 	public void whenOutOfWritePointsPencilShouldNotCollideAnyCharacters() {
-		Pencil pencil = new Pencil(3,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,3,10,10);
 		Paper paper = new Paper("The     jumped over the moon.");
 		
 		// Starting 1 space after 'The'
@@ -368,7 +412,7 @@ public class PencilTest {
 	
 	@Test
 	public void whenOutOfWritePointsPencilShoudNotOverWriteAnyCharactersOnPaper() {
-		Pencil pencil = new Pencil(3,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,3,10,10);
 		Paper paper = new Paper("The     jumped over the moon.");
 		
 		// Starting 1 space after 'The'
@@ -384,7 +428,7 @@ public class PencilTest {
 	@Test
 	public void whenOutOfWritePointsOverflowTextWhiteSpaceShouldBePreserved() {
 		// IE pencil should still keeps \n\t\f etc for overflow only
-		Pencil pencil = new Pencil(3,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,3,10,10);
 		Paper paper = new Paper("The    ");
 		
 		// Starting 1 space after 'The'
@@ -403,7 +447,7 @@ public class PencilTest {
 	 *****************************/
 	@Test
 	public void pencilShouldEraseTextFromPaper() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("The The The The The");
 		
 		// Erase last 'The'
@@ -416,7 +460,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldNotEraseSpecialWhiteCharacters() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("a\na");
 		
 		// Erases only the a's , preserving whitespace
@@ -430,7 +474,7 @@ public class PencilTest {
 	/*********************** Point Degradation Tests ***********************/
 	@Test
 	public void pencilShouldLoseOneErasePointPerNonWhiteSpaceCharacters(){
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("a\na");
 		
 		// Erases only the a's , preserving whitespace
@@ -442,7 +486,7 @@ public class PencilTest {
 	
 	@Test
 	public void pencilShouldNotLosePointsForAnyMatchingWhiteSpaceCharacters() {
-		Pencil pencil = new Pencil(10,10,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,10,10);
 		Paper paper = new Paper("\n\n\nsssss\tpppp ");
 		
 		// Erases only the a's , preserving whitespace
@@ -455,7 +499,7 @@ public class PencilTest {
 	/*********************** Erase Degradation Tests ***********************/
 	@Test
 	public void whenOutOfErasePointsPencilShouldNotEraseFromPaper() {
-		Pencil pencil = new Pencil(10,5,10);
+		Pencilable pencil = PencilableFactory.getPencilable(pencilType,10,5,10);
 		Paper paper = new Paper("abcdefghij");
 		
 		// Should not completely erase string
