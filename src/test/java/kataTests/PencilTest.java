@@ -435,9 +435,15 @@ public class PencilTest {
 		String replacement = "cow ran\n\n\t\f";
 		pencil.editOnPaper(paper,replacement,startIndex);
 		
-		String expected = "The cow    \n\n\t\f";
 		String paperText = paper.getText();
-		assertEquals(expected,paperText);
+		if(whiteSpaceFriendlyPencil) {
+			String expected = "The cow    \n\n\t\f";
+			assertEquals(expected,paperText);
+		} else {
+			String expected = "The cow        ";
+			assertEquals(expected,paperText);
+		}
+
 	}
 	
 	
