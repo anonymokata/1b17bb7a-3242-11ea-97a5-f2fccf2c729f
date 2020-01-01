@@ -1,8 +1,18 @@
 package pencil;
 
+/** A static factory that returns a Pencilable object using desired subclass.
+ * Factory can also return type-specific instances of a desired subclass.
+ * @author Adrian Hernandez
+ */
 public class PencilableFactory {
-	// Return an instance of desired object
-	static public AbstractPencil getPencilable(Pencilables type, int writePoints,
+	/** Create a new Pencilable instance from desired subclass
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints the default and initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @return a new instance of Pencilable using desired subclass
+	 */
+	static public Pencilable getPencilable(Pencilables type, int writePoints,
 			int erasePoints, int pencilLength) {
         AbstractPencil pencil = null;
         switch (type) {
@@ -21,8 +31,15 @@ public class PencilableFactory {
         return pencil;
 	}
 	
-	// Return an instance of desired object
-	static public AbstractPencil getPencilable(Pencilables type, int initialWritePoints,
+	/** Create a new Pencilable instance from desired subclass
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @param defaultWritePoints the default value writePoints is set to after sharpening
+	 * @return a new instance of Pencilable using desired subclass
+	 */
+	static public Pencilable getPencilable(Pencilables type, int initialWritePoints,
 			int erasePoints, int pencilLength, int defaultWritePoints) {
         AbstractPencil pencil = null;
         switch (type) {
@@ -41,31 +58,78 @@ public class PencilableFactory {
         return pencil;
 	}
 	
+	/** Get an instance of type CustomPencil
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @param defaultWritePoints the default value writePoints is set to after sharpening
+	 * @return a new instance of type CustomPencil
+	 */
 	static public CustomPencil getCustomPencil(int initialWritePoints, int erasePoints, 
 			int pencilLength, int defaultWritePoints) {
 		return new CustomPencil(initialWritePoints,erasePoints,pencilLength,defaultWritePoints);
 	}
 	
+	/** Get an instance of type CustomPencil
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints the default and initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @return a new instance of type CustomPencil
+	 */
 	static public CustomPencil getCustomPencil(int initialWritePoints, int erasePoints, 
 			int pencilLength) {
 		return new CustomPencil(initialWritePoints,erasePoints,pencilLength);
 	}
 	
+	/** Get an instance of type StrictPencil
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @param defaultWritePoints the default value writePoints is set to after sharpening
+	 * @return a new instance of type StrictPencil
+	 */
 	static public StrictPencil getStrictPencil(int initialWritePoints, int erasePoints, 
 			int pencilLength, int defaultWritePoints) {
 		return new StrictPencil(initialWritePoints,erasePoints,pencilLength,defaultWritePoints);
 	}
 	
+	/** Get an instance of type StrictPencil
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints the default and initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @param defaultWritePoints the default value writePoints is set to after sharpening
+	 * @return a new instance of type StrictPencil
+	 */
 	static public StrictPencil getStrictPencil(int initialWritePoints, int erasePoints, 
 			int pencilLength) {
 		return new StrictPencil(initialWritePoints,erasePoints,pencilLength);
 	}
 	
+	/** Get an instance of type Pencil
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @param defaultWritePoints the default value writePoints is set to after sharpening
+	 * @return a new instance of type Pencil
+	 */
 	static public Pencil getPencil(int initialWritePoints, int erasePoints, 
 			int pencilLength, int defaultWritePoints) {
 		return new Pencil(initialWritePoints,erasePoints,pencilLength,defaultWritePoints);
 	}
 	
+	/** Get an instance of type Pencil
+	 * @param type the enumerated concrete classes of Pencilables
+	 * @param writePoints the default and initialization for write points of pencil
+	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param pencilLength the amount of times pencil can be sharpened
+	 * @param defaultWritePoints the default value writePoints is set to after sharpening
+	 * @return a new instance of type Pencil
+	 */
 	static public Pencil getPencil(int initialWritePoints, int erasePoints, 
 			int pencilLength) {
 		return new Pencil(initialWritePoints,erasePoints,pencilLength);
