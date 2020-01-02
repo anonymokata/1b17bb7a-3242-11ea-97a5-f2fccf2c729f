@@ -63,8 +63,8 @@ abstract class AbstractPencil
 	 * @param pencilLength amount of times pencil can be sharpened                   
 	 * @param defaultWritePoints default value writePoints is set to after sharpening
 	 */
-	public AbstractPencil(int initialWritePoints, int erasePoints, int pencilLength, int defaultWritePoints) {
-		this.writePoints = initialWritePoints;
+	public AbstractPencil(int writePoints, int erasePoints, int pencilLength, int defaultWritePoints) {
+		this.writePoints = writePoints;
 		this.erasePoints = erasePoints;
 		this.pencilLength = pencilLength;
 		this.defaultWritePoints = defaultWritePoints;

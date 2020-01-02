@@ -40,8 +40,8 @@ public class CustomPencil extends AbstractPencil
 	 * @param pencilLength amount of times pencil can be sharpened                   
 	 * @param defaultWritePoints default value writePoints is set to after sharpening
 	 */
-	public CustomPencil(int initialWritePoints, int erasePoints, int pencilLength, int defaultWritePoints){
-		super(initialWritePoints,erasePoints,pencilLength, defaultWritePoints);
+	public CustomPencil(int writePoints, int erasePoints, int pencilLength, int defaultWritePoints){
+		super(writePoints,erasePoints,pencilLength, defaultWritePoints);
 		writer = WritableFactory.getWritable(Writables.StrictWriter);
 		eraser = (AbstractErasable) ErasableFactory.getErasable(Erasables.StrictEraser);
 		editor = EditableFactory.getEditable(Editables.StrongEditor);

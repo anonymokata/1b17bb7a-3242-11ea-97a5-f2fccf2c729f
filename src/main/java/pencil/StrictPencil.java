@@ -36,8 +36,8 @@ public class StrictPencil extends AbstractPencil {
 	 * @param pencilLength amount of times pencil can be sharpened                   
 	 * @param defaultWritePoints default value writePoints is set to after sharpening
 	 */
-	public StrictPencil(int initialWritePoints, int erasePoints, int pencilLength, int defaultWritePoints){
-		super(initialWritePoints,erasePoints,pencilLength, defaultWritePoints);
+	public StrictPencil(int writePoints, int erasePoints, int pencilLength, int defaultWritePoints){
+		super(writePoints,erasePoints,pencilLength, defaultWritePoints);
 		writer = WritableFactory.getWritable(Writables.StrictWriter);
 		eraser = (AbstractErasable) ErasableFactory.getErasable(Erasables.StrictEraser);
 		editor = EditableFactory.getEditable(Editables.StrictEditor);

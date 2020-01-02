@@ -4,7 +4,7 @@ import editor.Editable;
 import eraser.Erasable;
 import writer.Writable;
 
-/** A pencilable can perform all the functions of a Writable, Editable, & Erasable
+/** A pencilable can perform all the functions of a Writable, Editable, and Erasable
  * with degrading characteristics for all the implemented classes. This helps to 
  * more accurately model a graphite pencil.
  * @author Adrian Hernandez
