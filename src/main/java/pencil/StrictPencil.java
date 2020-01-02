@@ -13,7 +13,6 @@ import writer.Writables;
  * blank space ' ' to help simplify all logic. Eraser will erase new lines.
  * Editor will write over new lines with text, but not replace them with new 
  * forms of whitespace. Writer will write ' ' for every form of whitespace.
- * 
  * @author Adrian Hernandez
  */
 public class StrictPencil extends AbstractPencil {
