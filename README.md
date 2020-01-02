@@ -6,7 +6,7 @@ The purpose of this is to demonstrate Test Driven Development (TDD) by starting 
 I chose Java because it was the best-suited language for this Kata of all the ones I am familiar with (Java, NodeJs, Perl, C). The user stories seemed to imply a strong sense of objects based on how it was written. The user stories extended and built upon the previous functionality, reminding me of inheritance. The user stories also seemed very modularized and specific in their purpose, reminding me of interfaces. Although, I am a little bit biased since the job market in my local area has a heavy lean towards Java and C#/.NET.
 
 ## Running unit tests
-To run JUnit tests, you must have gradle installed. 
+To run JUnit tests, you must have [gradle](https://gradle.org/install/) installed. 
 
 **Command Line Interface (CLI):**
 
@@ -20,7 +20,8 @@ No log level needs to be specified since testLogger is set and defined within th
 
 **Eclipse**
 
-1. Open the _Gradle Tasks_ view in your window (Window -> Show View -> Other -> Gradle -> _Gradle Tasks_)
+1. Open the _Gradle Tasks_ view in your window
+	i. Window -> Show View -> Other -> Gradle -> _Gradle Tasks_
 2. Open the _build_ folder
 3. Run the _build_ task in the folder
 
