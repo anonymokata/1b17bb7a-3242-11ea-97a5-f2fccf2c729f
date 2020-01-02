@@ -83,8 +83,8 @@ public class CustomPencil extends AbstractPencil
 	 * @return this
 	 */
 	@Override
-	public CustomPencil setDullStyle(DullStyle writingWithNoPoints) {
-		this.writingWithNoPoints = writingWithNoPoints;
+	public CustomPencil setDullStyle(DullStyle dullWriting) {
+		this.writingWithNoPoints = dullWriting;
 		return this;
 	}
 }

@@ -95,9 +95,8 @@ public class PencilableFactory {
 	
 	/** Get an instance of type StrictPencil
 	 * @param writePoints the default and initialization for write points of pencil
-	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param erasePoints the initialization for erase points of pencil
 	 * @param pencilLength the amount of times pencil can be sharpened
-	 * @param defaultWritePoints the default value writePoints is set to after sharpening
 	 * @return a new instance of type StrictPencil
 	 */
 	static public StrictPencil getStrictPencil(int writePoints, int erasePoints, 
@@ -119,9 +118,8 @@ public class PencilableFactory {
 	
 	/** Get an instance of type Pencil
 	 * @param writePoints the default and initialization for write points of pencil
-	 * @param erasePoints the default and initialization for erase points of pencil
+	 * @param erasePoints the initialization for erase points of pencil
 	 * @param pencilLength the amount of times pencil can be sharpened
-	 * @param defaultWritePoints the default value writePoints is set to after sharpening
 	 * @return a new instance of type Pencil
 	 */
 	static public Pencil getPencil(int writePoints, int erasePoints, 
