@@ -11,7 +11,6 @@ public class StrictEditor implements Editable {
 
 	/** StrictEditor will insert text into ALL whitespace on paper, but will
 	 * NOT overwrite existing special whitespace with incoming whitespace. 
-	 *
 	 * @param paper The instance of paper that should be edited
 	 * @param replacementText The text that should be inserted
 	 * @param startIndex The index the text should begin to be inserted

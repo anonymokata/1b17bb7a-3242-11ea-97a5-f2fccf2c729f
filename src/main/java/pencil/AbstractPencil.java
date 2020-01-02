@@ -138,8 +138,9 @@ abstract class AbstractPencil
 	* Used only within the package to create different versions of the "same" 
 	* pencil while keeping the same structure */
 	
-	/** 
-	 * @param degradation the StringBuilder to add new 'degraded' character
+	/** Deduct the necessary write points for the writeChar and append the
+	 * appropriate character to degradation depending on the write points.
+	 * @param degradation the StringBuilder to add new 'degraded' characters
 	 * @param writeChar the character to go through degradation logic
 	 */
 	void characterPointWriting(StringBuilder degradation, char writeChar) {
@@ -159,14 +160,21 @@ abstract class AbstractPencil
 				writePoints--;
 			}
 		} else {
+			// write points will not be deducted for any forms of whitespace
 			appendChar = dullPointWriting(writeChar);
 		}
 		
 		degradation.append(appendChar);
 	}
 	
-	/**
-	 * @param degradation
+	/** Deduct a write point for a collision and append '@' if points are available. 
+	 * All collisions will deduct a point for attempting to write. Since a collision
+	 * is replaced with an '@' by the Editor, there is no need to keep track of what
+	 * the original character was. I append '@' preemptively for simplification, but
+	 * I could have passed the original character to the method to append instead. A
+	 * ' ' space means editor could not write from lack of points and leaves original
+	 * text on paper.
+	 * @param degradation The StringBuilder which will be passed to the editor
 	 */
 	void collisionPointWriting(StringBuilder degradation) {
 		// Collisions will count for 1 point, Any failed attempts cost a point
@@ -178,9 +186,11 @@ abstract class AbstractPencil
 		}
 	}
 	
-	/**
-	 * @param text
-	 * @return
+	/** Find the number of characters that can be erased from the string and 
+	 * deduct the appropriate amount of erase points.
+	 * @param text The text which should be erased
+	 * @return Number of non-whitespace characters that can be erased, counting
+	 * from right to left
 	 */
 	int characterPointErasing(String text) {
 		int spaceAdjusted = 0;
@@ -225,18 +235,14 @@ abstract class AbstractPencil
 		return defaultWritePoints;
 	}
 	
-	
-	/* Dull Point processing for whitespace */
-	
-	
-	/**
+	/** Dull Point processing style for whitespace
 	 * @return
 	 */
-	public DullStyle getDullStyle() {
+	DullStyle getDullStyle() {
 		return writingWithNoPoints;
 	}
 	
-	/**
+	/** Dull Point processing for whitespace
 	 * @param writeChar
 	 * @return
 	 */
