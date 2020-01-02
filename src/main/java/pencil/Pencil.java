@@ -8,7 +8,11 @@ import eraser.Erasables;
 import writer.WritableFactory;
 import writer.Writables;
 
-/**
+/** This pencil is what I believe best models the pencil as described by the
+ * kata. There were a lot of assumptions with special whitespace processing 
+ * that I made which might not be correct. If it isn't, I made a custom class
+ * from which I can easily swap out the editor, writer, eraser and dull point
+ * processing to make the most "correct" kata pencil possible with ease.
  * @author Adrian Hernandez
  */
 public class Pencil extends AbstractPencil {
