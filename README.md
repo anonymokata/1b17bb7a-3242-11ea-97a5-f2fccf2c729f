@@ -23,7 +23,7 @@ No log level needs to be specified since testLogger is set and defined within th
 1. Open the _Gradle Tasks_ view in your window
 	* Window -> Show View -> Other -> Gradle -> _Gradle Tasks_
 2. Open the _build_ folder
-3. Run the _build_ task in the folder
+3. Run the _build_ task in the _build_ folder
 
 ## Finding the working and testing classes
 
