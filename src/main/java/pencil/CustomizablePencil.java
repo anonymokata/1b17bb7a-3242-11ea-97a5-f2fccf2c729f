@@ -4,8 +4,6 @@ import editor.Editable;
 import eraser.AbstractErasable;
 import writer.Writable;
 
-// might need to use erasable
-// TODO: confirm above
 /** CustomizablePencil is able to create different combinations of 
  * writer, editor, eraser, and dull styles in case pencil was not
  * close enough to the kata description.
