@@ -11,7 +11,7 @@ public interface Paperable {
 	public void setText(String text);
 	
 	/** Get the entire text of the paper
-	 * @return 
+	 * @return entire text of the paper
 	 */
 	public String getText();
 }

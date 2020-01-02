@@ -32,7 +32,6 @@ public interface Editable {
 	/** editOnPaper will insert all text into allowed whitespace on paper and 
 	 * will clash all text on text with a '@' character. For editor package, 
 	 * implementation varies on handling special white space (non blank spaces).
-	 *
 	 * @param paper The instance of paper that should be edited
 	 * @param replacementText The replacementText that should be inserted
 	 * @param startIndex The index the text should be inserted
