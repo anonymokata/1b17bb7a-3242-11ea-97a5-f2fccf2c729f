@@ -8,7 +8,7 @@ I chose Java because it was the best-suited language for this Kata of all the on
 ## Running unit tests
 To run JUnit tests, you must have gradle installed. 
 
-** Command Line Interface (CLI): **
+**Command Line Interface (CLI):**
 
 To run tests, use this in your terminal of choice.
 
@@ -18,7 +18,7 @@ No log level needs to be specified since testLogger is set and defined within th
 
 ``gradle test --rerun-tasks``
 
-** Eclipse **
+**Eclipse**
 
 1. Open the _Gradle Tasks_ view in your window (Window -> Show View -> Other -> Gradle -> _Gradle Tasks_)
 2. Open the _build_ folder
