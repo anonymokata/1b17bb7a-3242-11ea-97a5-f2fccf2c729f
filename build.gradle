@@ -56,14 +56,21 @@ test {
 }
 
 
-javadoc {
-	destinationDir = file("$projectDir/src/main/webapp")
-}
-
+/* Throw javadocs into main/webapp and use it as a static application,
+* ensure that the directory exists, possibly remove original directory 
+* as well. 
+*
+* TODO: add a server that serves the files as-is, static content
+* TODO: deploy to google cloud
+* TODO: add proxy map and serve root from adrianhernandez.dev/graphitePencilJavaDocs
+*/
 task ensureWebAppDirectoryExists {
 	doLast {
 		mkdir "$projectDir/src/main/webapp"
 	}
 }
 
-javadoc.mustRunAfter ensureWebAppDirectoryExists
+javadoc {
+	mustRunAfter ensureWebAppDirectoryExists
+	destinationDir = file("$projectDir/src/main/webapp")
+}
