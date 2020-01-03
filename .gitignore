@@ -6,3 +6,7 @@ build
 
 # Ignore Eclipse project settings
 .settings/
+
+# Ignore webapp folder as it will be used solely for the latest javadocs
+# and hosted using TravisCI and Google Cloud
+src/main/webapp/

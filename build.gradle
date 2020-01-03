@@ -9,6 +9,8 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    // Create a web app to display the latest javadocs using Travis-CI with Google Cloud
+    id 'war'
 }
 
 repositories {
@@ -52,3 +54,16 @@ test {
 	*/
 	//debug true
 }
+
+
+javadoc {
+	destinationDir = file("$projectDir/src/main/webapp")
+}
+
+task ensureWebAppDirectoryExists {
+	doLast {
+		mkdir "$projectDir/src/main/webapp"
+	}
+}
+
+javadoc.mustRunAfter ensureWebAppDirectoryExists
