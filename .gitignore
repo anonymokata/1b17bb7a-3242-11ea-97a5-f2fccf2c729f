@@ -10,3 +10,6 @@ build
 # Ignore webapp folder as it will be used solely for the latest javadocs
 # and hosted using TravisCI and Google Cloud
 src/main/webapp/
+
+# But we still need to track the web-inf folder
+!src/main/webapp/WEB-INF/
