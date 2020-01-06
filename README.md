@@ -29,5 +29,6 @@ No log level needs to be specified since testLogger is set and defined within th
 
 All the working classes are found in the _src/main/java_ directory from root of project. For the Junit Tests, the junit tests files will be found in the _src/test/java_ directory.
 
+## Viewing Java Docs
 
-
+The generated java documentation for the latest commit can be found at [graphitePencil](https://graphitepenciljavadocs.appspot.com/).
