@@ -13,3 +13,6 @@ src/main/webapp/
 
 # But we still need to track the web-inf folder
 !src/main/webapp/WEB-INF/
+
+// Continous Integration
+travis-client-secret.json
