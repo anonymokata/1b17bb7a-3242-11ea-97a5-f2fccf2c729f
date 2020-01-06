@@ -70,7 +70,10 @@ appengine {
 
 test {
 	testLogging {
-		events "passed", "skipped", "failed", "standardOut", "standardError"
+		//-XX:MaxJavaStackTraceDepth
+		//events "passed", "skipped", "failed", "standardOut", "standardError"
+		exceptionFormat = "full"
+		showExceptions = true
 	}
 	
 	useJUnit()
@@ -115,4 +118,5 @@ test {
 */
 javadoc {
 	destinationDir = file("$projectDir/src/main/webapp")
+	includes = ["*.js","*.html","*.css","*.png"]
 }
