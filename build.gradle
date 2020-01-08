@@ -120,3 +120,6 @@ javadoc {
 	destinationDir = file("$projectDir/src/main/webapp")
 	includes = ["*.js","*.html","*.css","*.png"]
 }
+
+sourceCompatibility = 1.8     // App Engine Flexible uses Java 8
+targetCompatibility = 1.8     // App Engine Flexible uses Java 8
